@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 15:37:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/10/25 20:12:43 by moutifer         ###   ########.fr       */
+/*   Created: 2024/10/29 16:50:14 by moutifer          #+#    #+#             */
+/*   Updated: 2024/10/29 17:08:56 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isalnum(int c)
+void	ft_bzero(void *s, size_t n)
 {
-	if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >= 'A'
-			&& c <= 'Z'))
+	char	*sentence;
+	size_t	idx;
+
+	sentence = (char *) s;
+	idx = 0;
+	while ((idx < n))
 	{
-		return (1);
+		sentence[idx] = '\0';
+		idx++;
 	}
-	return (0);
 }
