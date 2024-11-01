@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 19:22:36 by moutifer          #+#    #+#             */
-/*   Updated: 2024/10/30 22:06:33 by moutifer         ###   ########.fr       */
+/*   Created: 2024/11/01 11:37:15 by moutifer          #+#    #+#             */
+/*   Updated: 2024/11/01 13:09:50 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t			idx;
-	unsigned char	*to_cast;
+	size_t				idx;
+	unsigned char		to_find;
+	const unsigned char	*str;
 
 	idx = 0;
-	to_cast = (unsigned char *)(b);
-	while (idx < len)
+	to_find = (unsigned char) c;
+	str = (const unsigned char *) s;
+	while (idx < n)
 	{
-		to_cast[idx] = (unsigned char) c;
+		if (str[idx] == to_find)
+			return ((void *)(s + idx));
 		idx++;
 	}
-	return (b);
+	return (NULL);
 }

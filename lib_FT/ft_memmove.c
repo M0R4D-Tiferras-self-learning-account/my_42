@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 19:22:36 by moutifer          #+#    #+#             */
-/*   Updated: 2024/10/30 22:06:33 by moutifer         ###   ########.fr       */
+/*   Created: 2024/10/31 03:39:40 by moutifer          #+#    #+#             */
+/*   Updated: 2024/11/01 11:35:23 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t			idx;
-	unsigned char	*to_cast;
+	size_t				idx;
+	unsigned char		*d;
+	const unsigned char	*s;
 
 	idx = 0;
-	to_cast = (unsigned char *)(b);
+	d = (unsigned char *)(dst);
+	s = (const unsigned char *)(src);
+	if (!dst && !src)
+		return (NULL);
+	if (dst > src)
+	{
+		while (len > 0)
+		{
+			d[len - 1] = s[len - 1];
+			len--;
+		}
+		return (dst);
+	}
 	while (idx < len)
 	{
-		to_cast[idx] = (unsigned char) c;
+		d[idx] = s[idx];
 		idx++;
 	}
-	return (b);
+	return (dst);
 }

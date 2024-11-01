@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 19:22:36 by moutifer          #+#    #+#             */
-/*   Updated: 2024/10/30 22:06:33 by moutifer         ###   ########.fr       */
+/*   Created: 2024/11/01 14:20:39 by moutifer          #+#    #+#             */
+/*   Updated: 2024/11/01 15:22:47 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+static size_t	my_len(const char *str)
 {
-	size_t			idx;
-	unsigned char	*to_cast;
+	size_t	count;
+
+	count = 0;
+	while (str[count] != '\0')
+	{
+		count++;
+	}
+	return (count);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	idx;
+	size_t	dst_idx;
 
 	idx = 0;
-	to_cast = (unsigned char *)(b);
-	while (idx < len)
+	dst_idx = 0;
+	while ((src[idx] != '\0') && (dst_idx < dstsize - 1))
 	{
-		to_cast[idx] = (unsigned char) c;
+		dst[dst_idx] = src[idx];
 		idx++;
+		dst_idx++;
 	}
-	return (b);
+	dst[dst_idx] = '\0';
+	return (my_len(src));
 }
