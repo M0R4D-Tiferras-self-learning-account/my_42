@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 18:20:43 by moutifer          #+#    #+#             */
-/*   Updated: 2024/10/25 20:12:11 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:21:53 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s)
 {
-	unsigned long int	count;
+	size_t	count;
 
 	count = 0;
 	while (s[count] != '\0')

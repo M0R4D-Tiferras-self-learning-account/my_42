@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:53:17 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/02 16:39:37 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/03 13:22:51 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	idx;
 	char	*result;
 
-	(void) len;
 	if (s == NULL)
 		return (NULL);
 	if (start > ft_strlen(s))
 		return (ft_strdup(""));
 	idx = 0;
-	result = malloc(sizeof(char) * (ft_strlen(s + start) + 1));
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	result = malloc(sizeof(char) * (len + 1));
 	if (result == NULL)
 		return (NULL);
-	while (s[start] != '\0')
+	while (idx < len)
 	{
 		result[idx] = s[start];
 		idx++;
