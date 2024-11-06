@@ -6,14 +6,13 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 15:28:38 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/04 16:55:53 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/06 20:15:52 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -51,4 +50,6 @@ char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_putchar_fd(char c, int fd);
+
 #endif

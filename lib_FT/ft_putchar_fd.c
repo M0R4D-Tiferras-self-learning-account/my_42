@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 15:55:50 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/06 15:02:49 by moutifer         ###   ########.fr       */
+/*   Created: 2024/11/06 15:34:22 by moutifer          #+#    #+#             */
+/*   Updated: 2024/11/06 20:16:21 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	ft_putchar_fd(char c, int fd)
 {
-	if (c >= 0 && c <= 127)
-	{
-		return (1);
-	}
-	return (0);
+	(void)(c);
+	(void)(fd);
+	return ;
 }
