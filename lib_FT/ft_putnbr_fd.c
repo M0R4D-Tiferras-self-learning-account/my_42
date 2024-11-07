@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 19:06:22 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/07 19:06:54 by moutifer         ###   ########.fr       */
+/*   Created: 2024/11/07 19:18:12 by moutifer          #+#    #+#             */
+/*   Updated: 2024/11/07 19:37:02 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void handle_more(int n, int fd)
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	if (fd < 0)
+		return ;
 	if (n == -2147483648)
 	{
 		write(fd, "-2147483648", 11);

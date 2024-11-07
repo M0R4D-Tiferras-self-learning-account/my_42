@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:44:01 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/07 17:47:53 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:37:54 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	int	idx;
 
-	if (s == NULL)
+	if (s == NULL || (fd < 0))
 		return ;
 	idx = 0;
 	while (s[idx] != '\0')
