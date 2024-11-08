@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:20:59 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/04 16:53:35 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:24:49 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	size_t		idx;
 	char		*result;
 
+	if (s == NULL || (*f) == NULL)
+		return (NULL);
 	idx = 0;
 	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (result == NULL)
@@ -26,5 +28,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		result[idx] = (*f)(idx, s[idx]);
 		idx++;
 	}
+	result[idx] = '\0';
 	return (result);
 }

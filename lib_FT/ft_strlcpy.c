@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 14:20:39 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/08 20:16:52 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:36:16 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 	idx = 0;
 	dst_idx = 0;
+	if (dst == src)
+		return (0);
 	if (my_len(src) + 1 <= dstsize)
 		ft_memcpy(dst, src, my_len(src) + 1);
 	else if (dstsize != 0)

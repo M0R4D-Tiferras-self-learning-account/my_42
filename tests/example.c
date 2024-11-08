@@ -2,27 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t				idx;
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	idx = 0;
-	if (!dst && !src)
-		return (NULL);
-	if (dst == src)
-		return (dst);
-	d = (unsigned char *)(dst);
-	s = (const unsigned char *)(src);
-	while (idx < n)
-	{
-		d[idx] = s[idx];
-		idx++;
-	}
-	return (dst);
-}
-
 static size_t	my_len(const char *str)
 {
 	size_t	count;
@@ -35,29 +14,33 @@ static size_t	my_len(const char *str)
 	return (count);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	idx;
+	size_t	source_idx;
 	size_t	dst_idx;
+	size_t	restore_dst_len;
 
-	idx = 0;
-	dst_idx = 0;
-	if (my_len(src) + 1 <= dstsize)
-		ft_memcpy(dst, src, my_len(src) + 1);
-	else if (dstsize != 0)
+	if (((my_len(dst) >= dstsize)))
+		return (dstsize + my_len(src));
+	source_idx = 0;
+	dst_idx = my_len(dst);
+	restore_dst_len = my_len(dst);
+	while (src[source_idx] != '\0' && (dst_idx < dstsize - 1))
 	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize] = '\0';
+		dst[dst_idx] = src[source_idx];
+		dst_idx++;
+		source_idx++;
 	}
-	return (my_len(src));
+	dst[dst_idx] = '\0';
+	return (restore_dst_len + my_len(src));
 }
-
 
 int main()
 {
-	char *s1 = NULL;
-	char s2[3];
 
-	ft_strlcpy(s1, s2, 3);
-    return 0;
+	char d[5] = "hi";
+	strlcat(d, d, 5);
+	// printf("%d\n", ft_strncmp("hello", "hel", 5));
+	// printf("%d\n", strncmp("hello", "hel", 5));
+	return 0;
 }

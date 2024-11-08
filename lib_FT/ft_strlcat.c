@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 15:24:42 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/08 19:56:45 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:46:22 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	dst_idx;
 	size_t	restore_dst_len;
 
+	if (dst == src)
+		return (0);
 	if (((my_len(dst) >= dstsize)))
 		return (dstsize + my_len(src));
 	source_idx = 0;
