@@ -14,36 +14,49 @@ static size_t	my_len(const char *str)
 	return (count);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	source_idx;
-	size_t	dst_idx;
-	size_t	restore_dst_len;
+	size_t				idx;
+	unsigned char		*d;
+	const unsigned char	*s;
 
+	idx = 0;
+	if (!dst && !src)
+		return (NULL);
 	if (dst == src)
-		return (0);
-	if (dstsize == 0 && dst == NULL && src)
-		return (my_len(src));
-	if (((my_len(dst) >= dstsize)))
-		return (dstsize + my_len(src));
-	source_idx = 0;
-	dst_idx = my_len(dst);
-	restore_dst_len = my_len(dst);
-	while (src[source_idx] != '\0' && (dst_idx < dstsize - 1))
+		return (dst);
+	d = (unsigned char *)(dst);
+	s = (const unsigned char *)(src);
+	while (idx < n)
 	{
-		dst[dst_idx] = src[source_idx];
-		dst_idx++;
-		source_idx++;
+		d[idx] = s[idx];
+		idx++;
 	}
-	dst[dst_idx] = '\0';
-	return (restore_dst_len + my_len(src));
+	return (dst);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	idx;
+	size_t	dst_idx;
+
+	idx = 0;
+	dst_idx = 0;
+	if (my_len(src) + 1 <= dstsize)
+		ft_memcpy(dst, src, my_len(src) + 1);
+	else if (dstsize != 0)
+	{
+		ft_memcpy(dst, src, dstsize - 1);
+		dst[dstsize - 1] = '\0';
+	}
+	return (my_len(src));
 }
 
 int main()
 {
-	char *s = "hi";
+	char *s = NULL;
 	char *d = NULL;
 
-	printf("%lu\n", ft_strlcat(0, s, 0));
+	printf("%zu\n", ft_strlcpy(d, s, 0));
 	return 0;
 }
