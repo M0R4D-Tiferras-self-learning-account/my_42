@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 15:26:46 by moutifer          #+#    #+#             */
-/*   Updated: 2024/10/26 16:59:25 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/07 22:39:56 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	idx;
 
+	if (n == 0)
+		return (0);
 	idx = 0;
-	while ((s1[idx] != '\0') && (s2[idx] != '\0')
-		&& (s1[idx] == s2[idx]) && (idx < n))
+	while ((idx < (n - 1)) && s1[idx] && s2[idx] && s1[idx] == s2[idx])
 	{
 		idx++;
 	}
