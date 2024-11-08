@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 17:21:35 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/01 10:13:04 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:03:52 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 	idx = 0;
 	if (!dst && !src)
-	{
 		return (NULL);
-	}
+	if (dst == src)
+		return (dst);
 	d = (unsigned char *)(dst);
 	s = (const unsigned char *)(src);
 	while (idx < n)
