@@ -20,6 +20,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	dst_idx;
 	size_t	restore_dst_len;
 
+	if (dst == src)
+		return (0);
+	if (dstsize == 0 && dst == NULL && src)
+		return (my_len(src));
 	if (((my_len(dst) >= dstsize)))
 		return (dstsize + my_len(src));
 	source_idx = 0;
@@ -37,10 +41,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 
 int main()
 {
+	char *s = "hi";
+	char *d = NULL;
 
-	char d[5] = "hi";
-	strlcat(d, d, 5);
-	// printf("%d\n", ft_strncmp("hello", "hel", 5));
-	// printf("%d\n", strncmp("hello", "hel", 5));
+	printf("%lu\n", ft_strlcat(0, s, 0));
 	return 0;
 }
