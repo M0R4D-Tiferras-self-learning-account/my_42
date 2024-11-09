@@ -6,13 +6,13 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:46:22 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/09 20:16:11 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:26:34 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_words(char const *str, char sep)
+static size_t	count_words(char const *str, char sep)
 {
 	size_t	idx;
 	size_t	count;
@@ -39,7 +39,7 @@ static int	count_words(char const *str, char sep)
 
 static void	*to_free(char **result, size_t col)
 {
-	int	i_col;
+	size_t	i_col;
 
 	i_col = 0;
 	if (col == 0)
@@ -53,9 +53,9 @@ static void	*to_free(char **result, size_t col)
 	return (NULL);
 }
 
-static int	count_word_len(char const *s, size_t start, char sep)
+static size_t	count_word_len(char const *s, size_t start, char sep)
 {
-	int	count;
+	size_t	count;
 
 	count = 0;
 	while ((s[start] != '\0') && (s[start] != sep))
@@ -74,24 +74,21 @@ static char	**fill(char const *s, char sep, char **result)
 
 	idx = 0;
 	col = 0;
-	while (s[idx] != '\0' && col < count_words(s, sep))
+	while (s[idx] && col < count_words(s, sep))
 	{
-		row = 0;
 		if (s[idx] != sep)
 		{
-			result[col] = malloc(count_word_len(s, s[idx], sep) * sizeof(char));
-			if (result[col] == NULL)
+			row = 0;
+			result[col] = malloc(count_word_len(s, s[idx], sep) + 1);
+			if (!result[col])
 				return (to_free(result, col));
-			while (s[idx] != sep && (s[idx] != '\0'))
-			{
-				result[col][row] = s[idx];
-				row++;
-				idx++;
-			}
+			while (s[idx] && s[idx] != sep)
+				result[col][row++] = s[idx++];
 			result[col][row] = '\0';
 			col++;
 		}
-		idx++;
+		else
+			idx++;
 	}
 	return (result);
 }
@@ -113,8 +110,8 @@ char	**ft_split(char const *s, char c)
 
 // int	main()
 // {
-// 	int c = 0;
-// 	char *s = "";
+// 	size_t c = 0;
+// 	char *s = "Hello l3allam LEET from it's prime";
 // 	char **res;
 
 // 	res = ft_split(s, ' ');
@@ -125,6 +122,6 @@ char	**ft_split(char const *s, char c)
 // 		c++;
 // 		printf("\n");
 // 	}
-// 	printf("%s", res[0]);
+// 	//printf("%s", res[0]);
 // 	return (0);
 // }
