@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:46:22 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/09 19:34:22 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:08:51 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ static void	*to_free(char **result, size_t col)
 	return (NULL);
 }
 
+static int	count_word_len(char const *s, size_t start, char sep)
+{
+	int	count;
+
+	count = 0;
+	while ((s[start] != '\0') && (s[start] != sep))
+	{
+		count++;
+		start++;
+	}
+	return (count + 1);
+}
+
 static char	**fill(char const *s, char sep, char **result)
 {
 	size_t	idx;
@@ -66,15 +79,16 @@ static char	**fill(char const *s, char sep, char **result)
 		row = 0;
 		if (s[idx] != sep)
 		{
-			while (s[idx] != '\0' && s[idx] != sep)
+			result[col] = malloc(count_word_len(s, s[idx], sep) * sizeof(char));
+			if (result[col] == NULL)
+				return (to_free(result, col));
+			while (s[idx] != sep)
 			{
 				result[col][row] = s[idx];
 				row++;
 				idx++;
 			}
 			result[col][row] = '\0';
-			if (result[col] == NULL)
-				return (to_free(result, col));
 			col++;
 		}
 		idx++;
@@ -86,7 +100,7 @@ char	**ft_split(char const *s, char c)
 {
 	char	**result;
 
-	if (s == NULL || ft_strlen(s) == 0)
+	if (s == NULL)
 		return (NULL);
 	result = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (result == NULL)
@@ -99,22 +113,18 @@ char	**ft_split(char const *s, char c)
 
 int	main()
 {
-	int c = 0, r = 0;
-	char *s = "Hello l3allaaam";
+	int c = 0;
+	char *s = "";
 	char **res;
 
 	res = ft_split(s, ' ');
 
-	while (r < count_words(s, ' '))
+	while (c < count_words(s, ' '))
 	{
-		r = 0;
-		while (res[c][r] != '\0')
-		{
-			printf("%c", res[c][r]);
-			r++;
-		}
+		printf("%s", res[c]);
 		c++;
 		printf("\n");
 	}
+	printf("%s", res[0]);
 	return (0);
 }
