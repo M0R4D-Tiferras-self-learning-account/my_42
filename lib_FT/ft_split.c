@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:46:22 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/09 20:08:51 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:11:04 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,22 +109,22 @@ char	**ft_split(char const *s, char c)
 	return (result);
 }
 
-#include <libc.h>
+// #include <libc.h>
 
-int	main()
-{
-	int c = 0;
-	char *s = "";
-	char **res;
+// int	main()
+// {
+// 	int c = 0;
+// 	char *s = "";
+// 	char **res;
 
-	res = ft_split(s, ' ');
+// 	res = ft_split(s, ' ');
 
-	while (c < count_words(s, ' '))
-	{
-		printf("%s", res[c]);
-		c++;
-		printf("\n");
-	}
-	printf("%s", res[0]);
-	return (0);
-}
+// 	while (c < count_words(s, ' '))
+// 	{
+// 		printf("%s", res[c]);
+// 		c++;
+// 		printf("\n");
+// 	}
+// 	printf("%s", res[0]);
+// 	return (0);
+// }
