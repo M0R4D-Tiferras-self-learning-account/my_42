@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:46:22 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/09 20:11:04 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/09 20:16:11 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static char	**fill(char const *s, char sep, char **result)
 			result[col] = malloc(count_word_len(s, s[idx], sep) * sizeof(char));
 			if (result[col] == NULL)
 				return (to_free(result, col));
-			while (s[idx] != sep)
+			while (s[idx] != sep && (s[idx] != '\0'))
 			{
 				result[col][row] = s[idx];
 				row++;
