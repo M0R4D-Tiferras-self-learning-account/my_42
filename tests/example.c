@@ -2,61 +2,35 @@
 #include <string.h>
 #include <stdlib.h>
 
-static size_t	my_len(const char *str)
+static int	count_words(char const *str, char sep)
 {
+	size_t	idx;
 	size_t	count;
+	int		check;
 
+	idx = 0;
 	count = 0;
-	while (str[count] != '\0')
+	check = 88;
+	while (str[idx] != '\0')
 	{
-		count++;
+		if ((str[idx] == sep))
+		{
+			check = 1;
+		}
+		else if ((str[idx] != sep) && (check == 1 || check == 88))
+		{
+			count++;
+			check = -1;
+		}
+		idx++;
 	}
 	return (count);
 }
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t				idx;
-	unsigned char		*d;
-	const unsigned char	*s;
-
-	idx = 0;
-	if (!dst && !src)
-		return (NULL);
-	if (dst == src)
-		return (dst);
-	d = (unsigned char *)(dst);
-	s = (const unsigned char *)(src);
-	while (idx < n)
-	{
-		d[idx] = s[idx];
-		idx++;
-	}
-	return (dst);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	idx;
-	size_t	dst_idx;
-
-	idx = 0;
-	dst_idx = 0;
-	if (my_len(src) + 1 <= dstsize)
-		ft_memcpy(dst, src, my_len(src) + 1);
-	else if (dstsize != 0)
-	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize - 1] = '\0';
-	}
-	return (my_len(src));
-}
-
 int main()
 {
-	char *s = NULL;
-	char *d = NULL;
+	char *s = "1 2 3";
 
-	printf("%zu\n", ft_strlcpy(d, s, 0));
+	printf("%d\n", count_words(s, ' '));
 	return 0;
 }
