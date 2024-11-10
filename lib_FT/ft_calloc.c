@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:14:43 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/08 19:57:48 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:32:16 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t count, size_t size)
 	unsigned char	*result;
 
 	idx = 0;
-	if (count < 0 || size < 0 || (count * size) / size != count)
+	if ((count * size) / size != count)
 		return (NULL);
 	result = malloc(size * count);
 	if (result == NULL)

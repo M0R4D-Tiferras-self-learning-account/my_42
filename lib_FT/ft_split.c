@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:46:22 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/09 20:26:34 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/10 12:30:11 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static size_t	count_word_len(char const *s, size_t start, char sep)
 		count++;
 		start++;
 	}
-	return (count + 1);
+	return (count);
 }
 
 static char	**fill(char const *s, char sep, char **result)
@@ -79,7 +79,7 @@ static char	**fill(char const *s, char sep, char **result)
 		if (s[idx] != sep)
 		{
 			row = 0;
-			result[col] = malloc(count_word_len(s, s[idx], sep) + 1);
+			result[col] = malloc((count_word_len(s, idx, sep) + 1));
 			if (!result[col])
 				return (to_free(result, col));
 			while (s[idx] && s[idx] != sep)
@@ -102,26 +102,28 @@ char	**ft_split(char const *s, char c)
 	result = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (result == NULL)
 		return (NULL);
+	result[count_words(s, c)] = NULL;
 	result = fill(s, c, result);
 	return (result);
 }
 
-// #include <libc.h>
+/* #include <stdio.h>
 
-// int	main()
-// {
-// 	size_t c = 0;
-// 	char *s = "Hello l3allam LEET from it's prime";
-// 	char **res;
+ int	main()
+ {
+ 	char **res;
+	size_t c = 0;
 
-// 	res = ft_split(s, ' ');
+ 	res = ft_split("hello!", ' ');
 
-// 	while (c < count_words(s, ' '))
-// 	{
-// 		printf("%s", res[c]);
-// 		c++;
-// 		printf("\n");
-// 	}
-// 	//printf("%s", res[0]);
-// 	return (0);
-// }
+ 	while (c < count_words("hello!", ' '))
+ 	{
+ 		printf("===%s===", res[c]);
+ 		c++;
+ 		printf("\n");
+ 	}
+ 	printf("\nTest count words; %lu\n", count_words("hello!", ' '));
+	free(res[0]);
+	free(res);
+ 	return (0);
+ }*/

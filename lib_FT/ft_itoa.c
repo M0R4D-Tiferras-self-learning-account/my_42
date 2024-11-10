@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 17:31:55 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/02 19:50:16 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/09 22:50:03 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ char	*ft_itoa(int n)
 		return (ft_strdup("0"));
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
+	if (n == 2147483647)
+		return (ft_strdup("2147483647"));
 	if (n < 0)
 	{
 		sign = -1;
