@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 17:14:43 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/09 22:32:16 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:31:16 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	size_t			idx;
-	unsigned char	*result;
+	char			*result;
 
 	idx = 0;
-	if ((count * size) / size != count)
+	if (size != 0 && ((count * size) / size) != count)
 		return (NULL);
 	result = malloc(size * count);
 	if (result == NULL)
@@ -28,5 +28,5 @@ void	*ft_calloc(size_t count, size_t size)
 		result[idx] = 0;
 		idx++;
 	}
-	return (result);
+	return ((void *) result);
 }

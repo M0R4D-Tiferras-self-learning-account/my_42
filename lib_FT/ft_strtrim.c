@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 14:49:23 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/08 19:59:46 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:40:39 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (!s1 || !set)
 		return (NULL);
+	if ((ft_strlen(s1) == 0 || ft_strlen(set) == 0) || s1 == set)
+		return ((char *) s1);
 	start = 0;
 	end = ft_strlen(s1) - 1;
 	while (trim_check(set, s1[start]) == 1)
