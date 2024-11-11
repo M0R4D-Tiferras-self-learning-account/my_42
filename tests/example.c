@@ -5,12 +5,23 @@
 #include "../lib_FT/libft.h"
 
 
+
+void to_up(unsigned int i, char *str)
+{
+	*str = '0';
+}
+
 int main()
 {
-	// char *s1 = "hello";
-	// char *s2 = "hel";
 
-	printf("%s\n", ft_strtrim("", ""));
-	//printf("%s\n", strtrim("", ""));
+	// int d = 88;
+
+	// ft_memset((char *)&d, 0b11101000, 1);
+	// ft_memset((char *)&d + 1, 0b111, 1);
+	// printf("%d\n", d);
+
+
+	printf("===%s===\n", ft_strtrim("abcd", ""));
+
 	return 0;
 }
