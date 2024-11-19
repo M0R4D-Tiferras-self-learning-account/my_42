@@ -11,10 +11,6 @@ int	main(void)
 	char buffer[bsize];
 	int n = -1;
 
-	if (buffer[0] == '\0')
-	{
-		printf("buff[0] is null terminated\n");
-	}
 
 	fd = open("./text.txt", O_RDONLY);
 	if (fd == -1)
