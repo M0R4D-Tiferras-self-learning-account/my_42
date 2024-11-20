@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:58:54 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/20 11:48:50 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:33:34 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	_num_len(int num)
 	}
 	return (count);
 }
-int main()
-{
-	printf("%d\n", _num_len(10));
-	return (0);
-}
+// int main()
+// {
+// 	printf("%d\n", _num_len(-123456789));
+// 	return (0);
+// }
