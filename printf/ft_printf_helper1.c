@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:58:54 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/20 11:15:26 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:48:50 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,29 @@ int	_num_len(int num)
 	int	count;
 	int	div;
 
-	count = 1;
+	count = 0;
 	if (num == -2147483648)
 		return (11);
-	if (num == 2147483647)
-		return (10);
 	if (num < 0)
 	{
 		num = num * -1;
 		count++;
 	}
 	if (num <= 9)
-		return (count);
-	div = 10;
-	while ((num / div) > 0)
 	{
 		count++;
-		div = div * 10;
+		return (count);
+	}
+	div = 10;
+	while (num > 0)
+	{
+		count++;
+		num = num / div;
 	}
 	return (count);
 }
 int main()
 {
-	printf("%d\n", _num_len(2147483646));
+	printf("%d\n", _num_len(10));
 	return (0);
 }
