@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 15:26:46 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/18 20:48:48 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/19 21:43:50 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 // int main()
 // {
-// 	char *s = "hello";
-// 	char *s2 = "hel";
+// 	char *s = "1a3a";
+// 	char *s2 = "123c";
 
-// 	printf("%d\n", strncmp("hello", "", 5));
-// 	printf("%d\n", ft_strncmp(s,s2, 5));
+// 	printf("%d\n", strncmp(s, s2, 1));
+// 	printf("%d\n", ft_strncmp(s,s2, 1));
 	
 // 	return 0;
 // }
