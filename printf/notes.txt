@@ -1,0 +1,17 @@
+Here’s a list of concepts you should know to work with variadic functions:
+
+1. Function prototypes  
+2. Variadic function syntax (`...`)  
+3. `stdarg.h` library  
+4. `va_list` type  
+5. `va_start` macro  
+6. `va_arg` macro  
+7. `va_end` macro  
+8. Default argument promotion  
+9. Format specifiers (e.g., `%d`, `%s`)  
+10. Error handling in variadic functions  
+11. Type safety concerns  
+12. Custom parsing of arguments  
+13. Stack memory and argument layout  
+14. Endianness and alignment considerations  
+15. Variable-length argument limitations

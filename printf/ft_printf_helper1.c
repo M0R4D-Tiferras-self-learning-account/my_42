@@ -6,29 +6,11 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:58:54 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/20 12:33:34 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:19:19 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	printf_return(char *str)
-{
-	int	idx;
-	int	count;
-
-	count = 0;
-	idx = 0;
-	while (*(str + idx) != '\0')
-	{
-		if (str[idx] == '%')
-			idx++;
-		else if (str[idx] != '%')
-			count++;
-		idx++;
-	}
-	return (count);
-}
 
 size_t	_strlen(const char *s)
 {
@@ -70,8 +52,63 @@ int	_num_len(int num)
 	}
 	return (count);
 }
-// int main()
-// {
-// 	printf("%d\n", _num_len(-123456789));
-// 	return (0);
-// }
+
+void	_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+int	printf_return(char *str)
+{
+	int	idx;
+	int	j;
+	int	count;
+
+	count = 0;
+	idx = 0;
+	while ((str[idx] != '\0'))
+	{
+		j = idx + 1;
+		if (j < _strlen(str))
+		{
+			if (str[idx] == '%' && str[j] == '%')
+			{
+				count++;
+				idx++;
+				continue ;
+			}
+		}
+		if (str[idx] == '%')
+			idx++;
+		else if (str[idx] != '%')
+			count++;
+		idx++;
+	}
+	return (count);
+}
+
+int	count_param(char *s)
+{
+	int	idx;
+	int	count;
+	int	j;
+
+	idx = 0;
+	count = 0;
+	while (s[idx] != '\0' && s[idx +1] != '\0')
+	{
+		j = idx + 1;
+		if ((s[j] == 'c' || s[j] == 's' || s[j] == 'p' || s[j] == 'd' || s[j] == 'i' || s[j] == 'u' || s[j] == 'x' || s[j] == 'X') && s[idx] == '%')
+		{
+			count++;
+		}
+		idx++;
+	}
+	return (count);
+}
+
+int main()
+{
+	printf("%d\n", printf_return("12%%"));
+	return (0);
+}
