@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:48:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 05:28:27 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/23 06:29:51 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	printf_handler(char c, va_list args)
 		_putstr(str);
 		return_sum += _strlen(str);
 	}
-	else if (c == 'd')
+	else if (c == 'd' || c == 'i')
 	{
 		n = va_arg(args, int);
 		_putnbr(n);
@@ -40,7 +40,6 @@ int	printf_handler(char c, va_list args)
 	else if (c == '%')
 	{
 		_putchar('%');
-		return_sum++;
 	}
 	return (return_sum);
 }
@@ -70,10 +69,10 @@ int	ft_printf(const char *format, ...)
 	return (return_sum);
 }
 
-int main()
-{
-	int r;
-	r = ft_printf("%c%s%d%%\n", 'A', NULL, -1985);
-	printf("\n%d\n", r);
-	return 0;
-}
+// int main()
+// {
+// 	int r;
+// 	r = ft_printf("%%");
+// 	printf("%d\n", r);
+// 	return 0;
+// }

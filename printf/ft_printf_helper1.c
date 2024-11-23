@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:58:54 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 05:11:22 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/23 05:49:29 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	printf_return(const char *str)
 			if (str[idx] == '%' && str[j] == '%')
 			{
 				count++;
-				idx++;
+				idx += 2;
 				continue ;
 			}
 		}
