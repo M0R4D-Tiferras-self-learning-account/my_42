@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_helper2.c                                :+:      :+:    :+:   */
+/*   unsigned_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 02:37:21 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 04:35:22 by moutifer         ###   ########.fr       */
+/*   Created: 2024/11/23 15:19:36 by moutifer          #+#    #+#             */
+/*   Updated: 2024/11/23 15:42:39 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	_putchar(char c)
+static int	unsigmed_num_len(unsigned int num)
 {
-	write(1, &c, 1);
+	int	count;
+	int	div;
+
+	count = 0;
+	if (num <= 9)
+	{
+		count++;
+		return (count);
+	}
+	div = 10;
+	while (num > 0)
+	{
+		count++;
+		num = num / div;
+	}
+	return (count);
 }
 
-void	_putstr(char *s)
-{
-	int	idx;
-
-	idx = 0;
-	if (s == NULL)
-	{
-		write(1, "(null)", 6);
-		return ;
-	}
-	while (s[idx] != '\0')
-	{
-		write(1, &s[idx], 1);
-		idx++;
-	}
-}
-
-static void	handle_more(int n)
+static void	handle_more(unsigned int n)
 {
 	int		div;
 	char	result;
@@ -53,25 +51,16 @@ static void	handle_more(int n)
 	}
 }
 
-void	_putnbr(int n)
+int	print_unsigned(unsigned int n)
 {
 	char	c;
 
-	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
-	{
-		n = -1 * n;
-		write(1, "-", 1);
-	}
 	if (n <= 9)
 	{
 		c = n + '0';
 		write(1, &c, 1);
-		return ;
+		return (1);
 	}
 	handle_more(n);
+	return (unsigmed_num_len(n));
 }

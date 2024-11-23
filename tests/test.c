@@ -71,8 +71,12 @@ int main(void)
 	// print_strings(", ", 2, "Jay", "Django");
 	// printf("%s\n", NULL);
 
-	int r = 0;
-	r = printf_return("%%");
-	printf("%d", r);
+	// int r = 0;
+	// r = printf_return("%%");
+	// printf("%d", r);
+
+	printf("Abc");
+	fflush(stdout);
+	write(1, "123\n", 4);
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:48:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 06:29:51 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/23 23:09:13 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,27 @@
 int	printf_handler(char c, va_list args)
 {
 	int		return_sum;
-	char	*str;
-	int		n;
 
 	return_sum = 0;
-	n = 0;
 	if (c == 'c')
 	{
-		_putchar((char) va_arg(args, int));
-		return_sum++;
+		return_sum += _putchar((char) va_arg(args, int));
 	}
 	else if (c == 's')
 	{
-		str = va_arg(args, char *);
-		_putstr(str);
-		return_sum += _strlen(str);
+		return_sum += _putstr(va_arg(args, char *));
 	}
 	else if (c == 'd' || c == 'i')
 	{
-		n = va_arg(args, int);
-		_putnbr(n);
-		return_sum += _num_len(n);
+		return_sum += _putnbr(va_arg(args, int));
+	}
+	else if (c == 'u')
+	{
+		return_sum += print_unsigned(va_arg(args, unsigned int));
 	}
 	else if (c == '%')
 	{
-		_putchar('%');
+		return_sum += _putchar('%');
 	}
 	return (return_sum);
 }
@@ -61,18 +57,17 @@ int	ft_printf(const char *format, ...)
 			idx++;
 		}
 		else if (format[idx] != '%')
-			_putchar(format[idx]);
+			return_sum += _putchar(format[idx]);
 		idx++;
 	}
 	va_end(args);
-	return_sum += printf_return(format);
 	return (return_sum);
 }
 
-// int main()
-// {
-// 	int r;
-// 	r = ft_printf("%%");
-// 	printf("%d\n", r);
-// 	return 0;
-// }
+int main()
+{
+	int r;
+	r = ft_printf("%d", -10);
+	printf("%d\n", r);
+	return 0;
+}
