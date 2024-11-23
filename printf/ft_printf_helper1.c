@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:58:54 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/21 14:19:19 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/23 03:39:23 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ int	_num_len(int num)
 		num = num / div;
 	}
 	return (count);
-}
-
-void	_putchar(char c)
-{
-	write(1, &c, 1);
 }
 
 int	printf_return(char *str)
@@ -105,10 +100,4 @@ int	count_param(char *s)
 		idx++;
 	}
 	return (count);
-}
-
-int main()
-{
-	printf("%d\n", printf_return("12%%"));
-	return (0);
 }

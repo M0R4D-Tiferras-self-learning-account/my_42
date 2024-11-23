@@ -1,20 +1,31 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdarg.h>
-#include <stdlib.h>
 
 
+void print_strings(const char *separator, const unsigned int n, ...)
+{
+	if (separator == NULL)
+		return ;
+	int arg_num = 0;
+	va_list ptr;
+
+	va_start(ptr, n);
+	int i = 0;
+	while(i < n)
+	{
+		printf("%s", va_arg(ptr, char *));
+		if (i < (n-1))
+			printf("%s", separator);
+		i++;
+	}
+	printf("\n");
+	va_end(ptr);
+}
 
 int main(int argc, char **argv)
 {
-	// printf("Hello l3alaam");
-	// write(1, "12345678", 8);
+	print_strings(", ", 2, "Jay", "Django");
 
-	int n = 0;
-	char *s = NULL;
-	n = printf("%s", s);
-	printf("\n%d\n", n);
-
-
+	printf("%s\n", NULL);
 	return 0;
 }
