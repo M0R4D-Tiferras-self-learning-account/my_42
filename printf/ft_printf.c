@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:48:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 05:20:34 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/23 05:28:27 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_printf(const char *format, ...)
 int main()
 {
 	int r;
-	r = ft_printf("%c%s%d%%\n", 'A', NULL, 1985);
+	r = ft_printf("%c%s%d%%\n", 'A', NULL, -1985);
 	printf("\n%d\n", r);
 	return 0;
 }
