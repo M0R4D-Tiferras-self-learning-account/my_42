@@ -6,15 +6,15 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:58:54 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 03:39:23 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/23 05:11:22 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	_strlen(const char *s)
+int	_strlen(const char *s)
 {
-	size_t	count;
+	int	count;
 
 	count = 0;
 	if (s == NULL)
@@ -53,7 +53,7 @@ int	_num_len(int num)
 	return (count);
 }
 
-int	printf_return(char *str)
+int	printf_return(const char *str)
 {
 	int	idx;
 	int	j;
@@ -93,7 +93,9 @@ int	count_param(char *s)
 	while (s[idx] != '\0' && s[idx +1] != '\0')
 	{
 		j = idx + 1;
-		if ((s[j] == 'c' || s[j] == 's' || s[j] == 'p' || s[j] == 'd' || s[j] == 'i' || s[j] == 'u' || s[j] == 'x' || s[j] == 'X') && s[idx] == '%')
+		if ((s[j] == 'c' || s[j] == 's' || s[j] == 'p' || s[j] == 'd'
+				|| s[j] == 'i' || s[j] == 'u' || s[j] == 'x'
+				|| s[j] == 'X') && s[idx] == '%')
 		{
 			count++;
 		}

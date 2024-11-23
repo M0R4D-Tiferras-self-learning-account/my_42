@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:47:17 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 03:38:12 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/23 05:11:46 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <stdarg.h>
 #include <libc.h>
 
-int		printf_return(char *str);
-size_t	_strlen(const char *s);
+int		printf_return(const char *str);
+int		_strlen(const char *s);
 int		_num_len(int num);
 void	_putchar(char c);
 void	_putstr(char *s);
