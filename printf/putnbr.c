@@ -6,38 +6,11 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 22:29:13 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/24 20:39:25 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 21:17:11 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// static int	_num_len(int num)
-// {
-// 	int	count;
-// 	int	div;
-
-// 	count = 0;
-// 	if (num == -2147483648)
-// 		return (11);
-// 	if (num < 0)
-// 	{
-// 		num = num * -1;
-// 		count++;
-// 	}
-// 	if (num <= 9)
-// 	{
-// 		count++;
-// 		return (count);
-// 	}
-// 	div = 10;
-// 	while (num > 0)
-// 	{
-// 		count++;
-// 		num = num / div;
-// 	}
-// 	return (count);
-// }
 
 static int	handle_more(int n)
 {
