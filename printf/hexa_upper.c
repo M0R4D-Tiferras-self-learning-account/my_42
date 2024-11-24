@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 15:18:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/24 16:58:54 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:38:56 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ static char	*rev_str(char *str)
 int	hexa_upper(int num)
 {
 	unsigned int	casted_num;
-	int				count;
 	int				idx;
 	char			*hexa;
 	char			buff[9];
 
 	idx = 0;
-	count = 0;
 	casted_num = (unsigned int) num;
 	hexa = "0123456789ABCDEF";
 	if (num == 0)

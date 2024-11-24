@@ -80,16 +80,15 @@ static char	*rev_str(char *str)
 
 int	hexa_address(unsigned long int num)
 {
-	int				count;
 	int				idx;
 	char			*hexa;
 	char			buff[9];
 
 	idx = 0;
-	count = 0;
 	hexa = "0123456789abcdef";
 	if (num == 0)
-		return (_putstr("0"));
+		return (_putstr("0x0"));
+	_putstr("0x");
 	while (num > 0)
 	{
 		buff[idx] = hexa[num % 16];
@@ -98,7 +97,7 @@ int	hexa_address(unsigned long int num)
 	}
 	buff[idx] = '\0';
 	rev_str(buff);
-	return (_putstr(buff));
+	return (_putstr(buff) + 2);
 }
 
 int main(void)
@@ -115,7 +114,7 @@ int main(void)
 	// write(1, "123\n", 4);
 
 	char *s = "";
-	printf("%p \n", s); // 7b
-	hexa_address((unsigned long int) s);     // b7
+	printf("%p \n",s); // 7b
+	hexa_address((unsigned long int)s);     // b7
 	return 0;
 }

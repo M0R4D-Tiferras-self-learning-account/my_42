@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:48:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/24 17:27:26 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:50:12 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	printf_handler(char c, va_list args)
 	else if (c == 'X')
 		return_sum += hexa_upper(va_arg(args, int));
 	else if (c == 'p')
-		return_sum += hexa_address(va_arg(args, void *));
+		return_sum += hexa_address((unsigned long int) va_arg(args, void *));
 	else if (c == '%')
 		return_sum += _putchar('%');
 	return (return_sum);
