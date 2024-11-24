@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 17:12:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/24 17:50:59 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:21:28 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ int	hexa_address(unsigned long int num)
 {
 	int				idx;
 	char			*hexa;
-	char			buff[9];
+	char			buff[17];
 
 	idx = 0;
 	hexa = "0123456789abcdef";
 	if (num == 0)
 		return (_putstr("0x0"));
-	_putstr("0x");
+	if (_putstr("0x") < 0)
+		return (-1);
 	while (num > 0)
 	{
 		buff[idx] = hexa[num % 16];
@@ -52,5 +53,7 @@ int	hexa_address(unsigned long int num)
 	}
 	buff[idx] = '\0';
 	rev_str(buff);
-	return (_putstr(buff) + 2);
+	if (_putstr(buff) < 0)
+		return (-1);
+	return (_strlen(buff) + 2);
 }

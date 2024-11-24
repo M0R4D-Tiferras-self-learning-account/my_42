@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:48:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/24 17:50:12 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:44:51 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	printf_handler(char c, va_list args)
 		return_sum += hexa_address((unsigned long int) va_arg(args, void *));
 	else if (c == '%')
 		return_sum += _putchar('%');
+	if (return_sum < 0)
+		return (-214748364);
 	return (return_sum);
 }
 
@@ -50,20 +52,16 @@ int	ft_printf(const char *format, ...)
 		if (format[idx + 1] != '\0' && format[idx] == '%')
 		{
 			return_sum += printf_handler(format[idx + 1], args);
+			if ((return_sum < 0))
+				return (-1);
 			idx++;
 		}
 		else if (format[idx] != '%')
 			return_sum += _putchar(format[idx]);
+		if (return_sum < 0)
+			return (-1);
 		idx++;
 	}
 	va_end(args);
 	return (return_sum);
 }
-
-// int main()
-// {
-// 	int r;
-// 	r = ft_printf("%d", -10);
-// 	printf("\n%d\n", r);
-// 	return 0;
-// }

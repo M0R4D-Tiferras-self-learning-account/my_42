@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 15:19:36 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 15:42:39 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 19:52:51 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ int	print_unsigned(unsigned int n)
 	if (n <= 9)
 	{
 		c = n + '0';
-		write(1, &c, 1);
-		return (1);
+		return (write(1, &c, 1));
 	}
 	handle_more(n);
 	return (unsigmed_num_len(n));
