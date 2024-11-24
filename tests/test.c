@@ -37,33 +37,68 @@ int	_strlen(const char *s)
 	return (count);
 }
 
-int	printf_return(const char *str)
+int	_putstr(char *s)
 {
 	int	idx;
-	int	j;
 	int	count;
 
-	count = 0;
 	idx = 0;
-	while ((str[idx] != '\0'))
+	count = 0;
+	if (s == NULL)
 	{
-		j = idx + 1;
-		if (j < _strlen(str))
-		{
-			if (str[idx] == '%' && str[j] == '%')
-			{
-				count++;
-				idx++;
-				continue ;
-			}
-		}
-		if (str[idx] == '%')
-			idx++;
-		else if (str[idx] != '%')
-			count++;
+		return (write(1, "(null)", 6));
+	}
+	while (s[idx] != '\0')
+	{
+		write(1, &s[idx], 1);
+		count++;
 		idx++;
 	}
 	return (count);
+}
+
+static char	*rev_str(char *str)
+{
+	int		idx;
+	int		last_idx;
+	char	tmp;
+
+	idx = 0;
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
+	last_idx = _strlen(str) - 1;
+	while (str[idx] != '\0' && (idx < last_idx))
+	{
+		tmp = str[idx];
+		str[idx] = str[last_idx];
+		str[last_idx] = tmp;
+		idx++;
+		last_idx--;
+	}
+	return (str);
+}
+
+int	hexa_address(unsigned long int num)
+{
+	int				count;
+	int				idx;
+	char			*hexa;
+	char			buff[9];
+
+	idx = 0;
+	count = 0;
+	hexa = "0123456789abcdef";
+	if (num == 0)
+		return (_putstr("0"));
+	while (num > 0)
+	{
+		buff[idx] = hexa[num % 16];
+		idx++;
+		num = num / 16;
+	}
+	buff[idx] = '\0';
+	rev_str(buff);
+	return (_putstr(buff));
 }
 
 int main(void)
@@ -75,8 +110,12 @@ int main(void)
 	// r = printf_return("%%");
 	// printf("%d", r);
 
-	printf("Abc");
-	fflush(stdout);
-	write(1, "123\n", 4);
+	// printf("Abc");
+	// fflush(stdout);
+	// write(1, "123\n", 4);
+
+	char *s = "";
+	printf("%p \n", s); // 7b
+	hexa_address((unsigned long int) s);     // b7
 	return 0;
 }

@@ -6,45 +6,47 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 22:29:13 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 22:55:11 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 15:17:42 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	_num_len(int num)
-{
-	int	count;
-	int	div;
+// static int	_num_len(int num)
+// {
+// 	int	count;
+// 	int	div;
 
-	count = 0;
-	if (num == -2147483648)
-		return (11);
-	if (num < 0)
-	{
-		num = num * -1;
-		count++;
-	}
-	if (num <= 9)
-	{
-		count++;
-		return (count);
-	}
-	div = 10;
-	while (num > 0)
-	{
-		count++;
-		num = num / div;
-	}
-	return (count);
-}
+// 	count = 0;
+// 	if (num == -2147483648)
+// 		return (11);
+// 	if (num < 0)
+// 	{
+// 		num = num * -1;
+// 		count++;
+// 	}
+// 	if (num <= 9)
+// 	{
+// 		count++;
+// 		return (count);
+// 	}
+// 	div = 10;
+// 	while (num > 0)
+// 	{
+// 		count++;
+// 		num = num / div;
+// 	}
+// 	return (count);
+// }
 
-static void	handle_more(int n)
+static int	handle_more(int n)
 {
 	int		div;
+	int		count;
 	char	result;
 
 	div = 10;
+	count = 0;
 	while ((n / div) >= 10)
 	{
 		div = div * 10;
@@ -52,10 +54,11 @@ static void	handle_more(int n)
 	while (div > 0)
 	{
 		result = (((n / div)) + '0');
-		write(1, &result, 1);
+		count += write(1, &result, 1);
 		n = n % div;
 		div = div / 10;
 	}
+	return (count);
 }
 
 int	_putnbr(int n)
@@ -81,6 +84,6 @@ int	_putnbr(int n)
 		count++;
 		return (count);
 	}
-	handle_more(n);
-	return (_num_len(n));
+	count += handle_more(n);
+	return (count);
 }

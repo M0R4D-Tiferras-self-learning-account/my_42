@@ -1,7 +1,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libftprintf.a
-CFILES = ft_printf.c ft_printf_helper1.c unsigned_int.c hexa_lower.c hexa_upper.c putnbr.c
+CFILES = ft_printf.c ft_printf_helper1.c unsigned_int.c hexa_lower.c hexa_upper.c hexa_address.c putnbr.c
 OBJ = $(CFILES:.c=.o)
 
 

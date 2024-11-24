@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:48:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 23:09:13 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 17:27:26 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,21 @@ int	printf_handler(char c, va_list args)
 
 	return_sum = 0;
 	if (c == 'c')
-	{
 		return_sum += _putchar((char) va_arg(args, int));
-	}
 	else if (c == 's')
-	{
 		return_sum += _putstr(va_arg(args, char *));
-	}
 	else if (c == 'd' || c == 'i')
-	{
 		return_sum += _putnbr(va_arg(args, int));
-	}
 	else if (c == 'u')
-	{
 		return_sum += print_unsigned(va_arg(args, unsigned int));
-	}
+	else if (c == 'x')
+		return_sum += hexa_lower(va_arg(args, int));
+	else if (c == 'X')
+		return_sum += hexa_upper(va_arg(args, int));
+	else if (c == 'p')
+		return_sum += hexa_address(va_arg(args, void *));
 	else if (c == '%')
-	{
 		return_sum += _putchar('%');
-	}
 	return (return_sum);
 }
 
@@ -64,10 +60,10 @@ int	ft_printf(const char *format, ...)
 	return (return_sum);
 }
 
-int main()
-{
-	int r;
-	r = ft_printf("%d", -10);
-	printf("%d\n", r);
-	return 0;
-}
+// int main()
+// {
+// 	int r;
+// 	r = ft_printf("%d", -10);
+// 	printf("\n%d\n", r);
+// 	return 0;
+// }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hexa_upper.c                                       :+:      :+:    :+:   */
+/*   hexa_address.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 15:18:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/24 16:58:54 by moutifer         ###   ########.fr       */
+/*   Created: 2024/11/24 17:12:26 by moutifer          #+#    #+#             */
+/*   Updated: 2024/11/24 17:16:22 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ static char	*rev_str(char *str)
 	return (str);
 }
 
-int	hexa_upper(int num)
+int	hexa_address(unsigned long int num)
 {
-	unsigned int	casted_num;
 	int				count;
 	int				idx;
 	char			*hexa;
@@ -43,15 +42,14 @@ int	hexa_upper(int num)
 
 	idx = 0;
 	count = 0;
-	casted_num = (unsigned int) num;
-	hexa = "0123456789ABCDEF";
+	hexa = "0123456789abcdef";
 	if (num == 0)
 		return (_putstr("0"));
-	while (casted_num > 0)
+	while (num > 0)
 	{
-		buff[idx] = hexa[casted_num % 16];
+		buff[idx] = hexa[num % 16];
 		idx++;
-		casted_num = casted_num / 16;
+		num = num / 16;
 	}
 	buff[idx] = '\0';
 	rev_str(buff);

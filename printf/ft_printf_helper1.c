@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:58:54 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/23 23:05:58 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:54:23 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	_strlen(const char *s)
 	}
 	return (count);
 }
+
 int	_putchar(char c)
 {
 	write(1, &c, 1);
