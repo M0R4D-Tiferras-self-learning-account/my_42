@@ -7,8 +7,8 @@ OBJ = $(CFILES:.c=.o)
 
 all: $(NAME)
 
-# %.o: %.c ft_printf.h
-# 	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c ft_printf.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	ar -crs $(NAME) $(OBJ)

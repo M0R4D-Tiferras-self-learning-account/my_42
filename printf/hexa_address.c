@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 17:12:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/24 20:21:28 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/28 00:49:53 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	hexa_address(unsigned long int num)
 	}
 	buff[idx] = '\0';
 	rev_str(buff);
-	if (_putstr(buff) < 0)
-		return (-1);
+	_putstr(buff);
 	return (_strlen(buff) + 2);
 }

@@ -14,9 +14,10 @@ int	main(void)
 	// r2 = ft_printf("%s", NULL);
 	// printf("\nOriginal return; %d\nMine        %d\n", r, r2);
 
-	int n = -123;
-	unsigned int nn;
-	nn = (unsigned int) nn;
-	printf("%u\n", nn);
+
+	int r;
+
+	r = -1 * -2147483648;
+	printf("%d\n", r);
 	return 0;
 }

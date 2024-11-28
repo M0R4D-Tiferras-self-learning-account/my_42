@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:48:28 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/25 01:48:37 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/28 00:44:23 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	printf_handler(char c, va_list args)
 		return_sum += hexa_address((unsigned long int) va_arg(args, void *));
 	else if (c == '%')
 		return_sum += _putchar('%');
+	else
+		return_sum += _putchar(c);
 	return (return_sum);
 }
 
