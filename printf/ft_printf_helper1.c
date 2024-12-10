@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 09:58:54 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/24 19:57:59 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:09:19 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ int	_putstr(char *s)
 	}
 	while (s[idx] != '\0')
 	{
-		if (write(1, &s[idx], 1) < 0)
-			return (-1);
+		write(1, &s[idx], 1);
 		count++;
 		idx++;
 	}
