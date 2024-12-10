@@ -8,7 +8,11 @@ OBJ = $(CFILES:.c=.o)
 all: $(NAME)
 
 %.o: %.c ft_printf.h
+<<<<<<< HEAD
 	$(CC) $(CFLAG) -c $< -o $@
+=======
+	$(CC) $(CFLAGS) -c $< -o $@
+>>>>>>> 52091a791f898e81e6ccccc428c3ce2c42884ded
 
 $(NAME): $(OBJ)
 	ar -crs $(NAME) $(OBJ)
