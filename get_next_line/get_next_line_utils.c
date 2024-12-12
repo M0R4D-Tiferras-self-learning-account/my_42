@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:20:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/12 04:03:28 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/12 04:18:07 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	count_newline(char *str)
 	idx = 0;
 	count = 0;
 	if (str == NULL)
-		return (NULL);
+		return (0);
 	while (str[idx] != '\0')
 	{
 		if (str[idx] == '\n')

@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:24:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/12 04:04:58 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/12 04:16:04 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <libc.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
