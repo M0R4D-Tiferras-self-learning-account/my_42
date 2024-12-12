@@ -14,6 +14,13 @@
 
 char *get_next_line(int fd)
 {
+<<<<<<< HEAD
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > 2147483647)
 		return (NULL);
+=======
+    char *read_it;
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, read_it, 0) < 0)
+        return (NULL);
+>>>>>>> 29b5b36f352530a901ec8e777670a843075bd753
 }
