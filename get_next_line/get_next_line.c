@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/10 15:24:29 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/12 04:07:58 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 char *get_next_line(int fd)
 {
-<<<<<<< HEAD
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > 2147483647)
 		return (NULL);
-=======
-    char *read_it;
-
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, read_it, 0) < 0)
-        return (NULL);
->>>>>>> 29b5b36f352530a901ec8e777670a843075bd753
 }
