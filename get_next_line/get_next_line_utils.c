@@ -6,20 +6,26 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:20:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/17 16:22:56 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/12 04:02:49 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	_strlen(char *s)
+size_t	count_newline(char *str)
 {
+	size_t	idx;
 	size_t	count;
 
+	idx = 0;
 	count = 0;
-	while (s[count] != '\0')
+	if (str == NULL)
+		return (NULL);
+	while (str[idx] != '\0')
 	{
-		count++;
+		if (str[idx] == '\n')
+			count++;
+		idx++;
 	}
 	return (count);
 }

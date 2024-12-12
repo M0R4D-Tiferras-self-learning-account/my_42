@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:24:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/11/17 18:15:34 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/12 03:59:29 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 # define BUFFER_SIZE 1
 
-size_t	_strlen(char *s);
 char	*get_next_line(int fd);
 
 #endif
