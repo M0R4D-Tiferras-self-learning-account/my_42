@@ -19,7 +19,7 @@ char	*get_next_line(int fd)
 	char		*buffer;
 	char		*result;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (NULL);
 	read_it = read(fd, buffer, BUFFER_SIZE);
 	printf("%d\n", read_it);
