@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:20:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/12 04:18:07 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/15 14:04:49 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,10 @@ size_t	count_newline(char *str)
 		idx++;
 	}
 	return (count);
+}
+
+void	_free(char *str)
+{
+	free(str);
+	str = NULL;
 }
