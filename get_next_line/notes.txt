@@ -1,3 +1,0 @@
-1- check EOF
-2- handle it if there is a new line
-3- handle it if not
