@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 20:02:02 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:29:59 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*_get_line(char *result)
 	idx = 0;
 	while (result[idx] != '\0' && result[idx] != '\n')
 		idx++;
-	if (result[idx] != '\0' && result[idx] == '\n' && (idx + 1) <= ft_strlen(result))
+	if (result[idx] != '\0' && result[idx] == '\n' && (size_t)(idx + 1) <= ft_strlen(result))
 	{
 		line = ft_strdup(ft_substr(result, 0, idx + 1));
 		tmp_result = ft_strdup(&result[idx + 1]);
@@ -57,11 +57,6 @@ char	*_get_line(char *result)
 		tmp_result = ft_strdup(&result[idx]);
 	}
 	result = _free(result);
-	if (line[0] == '\0')
-	{
-		tmp_result = _free(tmp_result);
-		return (NULL);
-	}
 	result = ft_strdup(tmp_result);
 	tmp_result = _free(tmp_result);
 	return (line);
@@ -102,28 +97,34 @@ char	*get_next_line(int fd)
 	}
 	buffer = _free(buffer);
 	line = _get_line(result);
+	if (line[0] == '\0')
+	{
+		result = _free(result);
+		line = _free(line);
+		return (NULL);
+	}
 	return (line);
 }
 
-int	main(void)
-{
-	int fd = open("test.txt", O_RDWR);
+// int	main(void)
+// {
+// 	int fd = open("test.txt", O_RDWR);
 
-	char *s = get_next_line(fd);
-	printf("-->%s", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("-->%s", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("-->%s", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("-->%s", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("-->%s", s);
-	free(s);
+// 	char *s = get_next_line(fd);
+// 	printf("-->%s", s);
+// 	free(s);
+// 	s = get_next_line(fd);
+// 	printf("-->%s", s);
+// 	free(s);
+// 	s = get_next_line(fd);
+// 	printf("-->%s", s);
+// 	free(s);
+// 	s = get_next_line(fd);
+// 	printf("-->%s", s);
+// 	free(s);
+// 	s = get_next_line(fd);
+// 	printf("-->%s", s);
+// 	free(s);
 
-	return (0);
-}
+// 	return (0);
+// }
