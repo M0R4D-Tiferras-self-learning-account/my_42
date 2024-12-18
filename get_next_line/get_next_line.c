@@ -6,17 +6,62 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 03:21:02 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/18 05:41:53 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	idx;
+	char	*result;
+
+	if (s == NULL)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	idx = 0;
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	result = malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (NULL);
+	while (idx < len)
+	{
+		result[idx] = s[start];
+		idx++;
+		start++;
+	}
+	result[idx] = '\0';
+	return (result);
+}
+
+char	*_set_line(char *result)
+{
+	int		idx;
+	char	*tmp;
+
+	idx = 0;
+	while (result[idx] != '\0' && result[idx] != '\n')
+		idx++;
+	
+}
+
+char	*_append(char *result, char *buffer, ssize_t read_it)
+{
+	if (result == NULL)
+		result = "";
+	result = ft_strjoin(result, buffer);
+	return (result);
+}
 
 char	*get_next_line(int fd)
 {
 	int				read_it;
 	char			*buffer;
 	static char		*result;
+	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || read(fd, NULL, 0) < 0)
 		return (NULL);
@@ -28,7 +73,12 @@ char	*get_next_line(int fd)
 		read_it = read(fd, buffer, BUFFER_SIZE);
 		if (read_it == -1 || read_it == 0)
 			return (NULL);
-		return ("line");
+		result = _append(result, buffer, read_it);
+		if (ft_strchr(result, '\n') != NULL)
+		{
+			line = 
+		}
+		return (result);
 	}
 	return (NULL);
 }

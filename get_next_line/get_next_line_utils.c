@@ -6,13 +6,13 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:20:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 03:28:45 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/18 05:28:50 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	idx;
 
