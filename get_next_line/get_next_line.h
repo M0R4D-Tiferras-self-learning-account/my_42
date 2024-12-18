@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:24:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/15 14:04:59 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/18 03:09:28 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include <stdio.h>
+# include <libc.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
-size_t	count_newline(char *str);
-void	_free(char *str);
+size_t	_strlen(char *str);
+char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
+void	*_free(char *str);
 char	*get_next_line(int fd);
 
 #endif
