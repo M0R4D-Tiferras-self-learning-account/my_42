@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 05:41:53 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/18 05:46:54 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,19 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (result);
 }
 
-char	*_set_line(char *result)
+char	*_get_line(char *result)
 {
 	int		idx;
 	char	*tmp;
+	char	*line;
 
 	idx = 0;
 	while (result[idx] != '\0' && result[idx] != '\n')
 		idx++;
-	
+	line = ft_substr(result, 0, idx);
+	tmp = ft_strchr(result, '\n');
+	result = tmp;
+	return (line);
 }
 
 char	*_append(char *result, char *buffer, ssize_t read_it)
@@ -76,7 +80,8 @@ char	*get_next_line(int fd)
 		result = _append(result, buffer, read_it);
 		if (ft_strchr(result, '\n') != NULL)
 		{
-			line = 
+			line = _get_line(result);
+			return (line);
 		}
 		return (result);
 	}

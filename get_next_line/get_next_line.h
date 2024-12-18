@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:24:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 05:28:27 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/18 05:46:30 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*ft_strchr(const char *s, int c);
 void	*_free(char *str);
 char	*_append(char *result, char *buffer, ssize_t read_it);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*_get_line(char *result);
 char	*get_next_line(int fd);
 
 #endif
