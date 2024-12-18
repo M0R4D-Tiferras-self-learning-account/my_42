@@ -1,4 +1,4 @@
-123EOF
 123
+abc
 
-a
+EOF

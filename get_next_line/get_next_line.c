@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 05:46:54 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/18 06:15:05 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,18 @@ char	*_get_line(char *result)
 	idx = 0;
 	while (result[idx] != '\0' && result[idx] != '\n')
 		idx++;
+	if (result[idx] != '\0' && result[idx] == '\n' && (idx + 1) < ft_strlen(result))
+	{
+		line = ft_substr(result, 0, idx + 1);
+		tmp = ft_strchr(result, '\n');
+		result = _free(result);
+		result = ft_strdup(tmp + 1);
+		return (line);
+	}
 	line = ft_substr(result, 0, idx);
 	tmp = ft_strchr(result, '\n');
-	result = tmp;
+	result = _free(result);
+	result = ft_strdup(tmp);
 	return (line);
 }
 
@@ -81,17 +90,19 @@ char	*get_next_line(int fd)
 		if (ft_strchr(result, '\n') != NULL)
 		{
 			line = _get_line(result);
+			printf("Result =%s\n", result);
 			return (line);
 		}
 		return (result);
 	}
-	return (NULL);
 }
 
 int	main(void)
 {
 	int fd = open("test.txt", O_RDWR);
 
-	printf("%s\n", get_next_line(fd));
+	printf("get_next_line--%s", get_next_line(fd));
+	printf("\n---------\n");
+	printf("get_next_line--%s", get_next_line(fd));
 	return (0);
 }
