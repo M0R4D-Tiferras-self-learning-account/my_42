@@ -50,8 +50,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	idx;
 	char	*result;
 
-	if (!s1 || !s2)
-		return (NULL);
+	if (!s1 && s2)
+		return (ft_strdup(s2));
+	if (s1 && !s2)
+		return (ft_strdup(s1));
 	result = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (result == NULL)
 		return (NULL);
@@ -63,11 +65,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	idx = 0;
 	while (s2[idx] != '\0')
-	{
-		result[result_idx] = s2[idx];
-		result_idx++;
-		idx++;
-	}
+		result[result_idx++] = s2[idx++];
 	result[result_idx] = '\0';
 	return (result);
 }
