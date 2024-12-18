@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:24:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 03:09:28 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/18 03:28:51 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #  define BUFFER_SIZE 42
 # endif
 
-size_t	_strlen(char *str);
+size_t	ft_strlen(char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
