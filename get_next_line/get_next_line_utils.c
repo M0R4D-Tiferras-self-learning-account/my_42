@@ -94,9 +94,27 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-void	*_free(char *str)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	if (str != NULL)
-		free(str);
-	return (NULL);
+	size_t	idx;
+	char	*result;
+
+	if (s == NULL)
+		return (NULL);
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	idx = 0;
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
+	result = malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (NULL);
+	while (idx < len)
+	{
+		result[idx] = s[start];
+		idx++;
+		start++;
+	}
+	result[idx] = '\0';
+	return (result);
 }
