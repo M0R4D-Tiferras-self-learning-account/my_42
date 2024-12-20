@@ -12,10 +12,36 @@
 
 #include "get_next_line.h"
 
+static char	*update_result(char *result)
+{
+	size_t	idx;
+	char	*tmp_result;
+
+	idx = 0;
+	while (result != NULL && result[idx] != '\0' && result[idx] != '\n')
+		idx++;
+	if (result[idx] == '\n')
+		tmp_result = ft_strdup(&result[idx + 1]);
+	if (result[idx] == '\0')
+	{
+		free(result);
+		return (NULL);
+	}
+	if ((result[idx] == '\n') && (size_t)(idx + 1) <= ft_strlen(result))
+		tmp_result = ft_strdup(&result[idx + 1]);
+	else
+		tmp_result = ft_strdup(&result[idx]);
+	if (tmp_result[0] == '\0')
+	{
+		free(tmp_result);
+		return(NULL);
+	}
+	return (tmp_result);
+}
+
 char	*_get_line(char *result)
 {
 	int		idx;
-	char	*tmp_result;
 	char	*line;
 
 	idx = 0;
@@ -23,27 +49,19 @@ char	*_get_line(char *result)
 		return (NULL);
 	while (result != NULL && result[idx] != '\0' && result[idx] != '\n')
 		idx++;
+	if (idx == 0 && result[idx] == '\n')
+		return (ft_strdup("\n"));
 	if (idx == 0)
 		return (result);
 	if (result[idx] == '\n' && (size_t)(idx + 1) <= ft_strlen(result))
-	{
 		line = ft_substr(result, 0, idx + 1);
-		tmp_result = ft_strdup(&result[idx + 1]);
-	}
 	else
-	{
 		line = ft_substr(result, 0, idx);
-		tmp_result = ft_strdup(&result[idx]);
-	}
-	free(result);
 	if (line[0] == '\0')
 	{
 		free(line);
-		free(tmp_result);
 		return(NULL);
 	}
-	result = ft_strdup(tmp_result);
-	free(tmp_result);
 	return (line);
 }
 
@@ -94,6 +112,7 @@ char	*get_next_line(int fd)
 		result = NULL;
 		return (NULL);
 	}
+	result = update_result(result);
 	return (line);
 }
 
@@ -103,21 +122,31 @@ char	*get_next_line(int fd)
  	int fd = open("test.txt", O_RDWR);
 
  	char *s = get_next_line(fd);
- 	printf("--%s", s);
+ 	printf("--%s--", s);
  	free(s);
 	s = get_next_line(fd);
-	printf("--%s", s);
+	printf("--%s--", s);
  	free(s);
 	s = get_next_line(fd);
-	printf("--%s", s);
+	printf("--%s--", s);
  	free(s);
 	s = get_next_line(fd);
-	printf("--%s", s);
+	printf("--%s--", s);
  	free(s);
 	s = get_next_line(fd);
-	printf("-->%s", s);
+	printf("--%s--", s);
+ 	free(s);
+	s = get_next_line(fd);
+	printf("--%s--", s);
+ 	free(s);
+	s = get_next_line(fd);
+	printf("--%s--", s);
+ 	free(s);
+	s = get_next_line(fd);
+	printf("--%s--", s);
  	free(s);
 
+	printf("\n-----\n");
 	close(fd);
  	return (0);
  }
