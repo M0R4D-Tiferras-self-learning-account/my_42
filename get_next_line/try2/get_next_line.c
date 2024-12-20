@@ -12,32 +12,31 @@
 
 #include "get_next_line.h"
 
-static char	*update_result(char *result)
+static char	*update_result(char **result)
 {
 	size_t	idx;
 	char	*tmp_result;
 
 	idx = 0;
-	while (result != NULL && result[idx] != '\0' && result[idx] != '\n')
+	while ((*result) != NULL && (*result)[idx] != '\0' && (*result)[idx] != '\n')
 		idx++;
-	if (result[idx] == '\0')
+	if ((*result)[idx] == '\0')
 	{
-		free(result);
+		free((*result));
 		return (NULL);
 	}
-	if (result[idx] == '\n')
-		tmp_result = ft_strdup(&result[idx + 1]);
-	if ((result[idx] == '\n') && (size_t)(idx + 1) <= ft_strlen(result))
-		tmp_result = ft_strdup(&result[idx + 1]);
+	if (((*result)[idx] == '\n') && (size_t)(idx + 1) <= ft_strlen((*result)))
+		tmp_result = ft_strdup(&(*result)[idx + 1]);
 	else
-		tmp_result = ft_strdup(&result[idx]);
-	/*if (tmp_result[0] == '\0')
+		tmp_result = ft_strdup(&(*result)[idx]);
+	if (tmp_result == NULL)
 	{
-		free(result);
-		result = NULL;
-		free(tmp_result);
-		return(NULL);
-	}*/
+		free(*(result));
+		*(result) = NULL;
+		return (NULL);
+	}
+	free(*(result));
+	*(result) = tmp_result;
 	return (tmp_result);
 }
 
@@ -120,7 +119,7 @@ char	*get_next_line(int fd)
 		result = NULL;
         return (NULL);
     }
-	result = update_result(result);
+	result = update_result(&result);
 	return (line);
 }
 

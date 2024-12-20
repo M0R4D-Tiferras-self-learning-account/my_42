@@ -82,11 +82,7 @@ char	*get_next_line(int fd)
 	free(buffer);
 	buffer = NULL;
 	if (read_it == -1 || result == NULL)
-	{
-		free(result);
-		result = NULL;
-		return (NULL);
-	}
+		return (free(result), result = NULL, NULL);
 	line = _get_line(result);
 	if ((line[0] == '\0' || line == NULL) && read_it == 0)
 	{
