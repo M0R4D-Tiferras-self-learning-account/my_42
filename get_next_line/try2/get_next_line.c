@@ -66,14 +66,14 @@ char	*_get_line(char *result)
 	return (line);
 }
 
-char	*_append(char *result, char *buffer, ssize_t read_it)
+char	*_append(char **result, char *buffer, ssize_t read_it)
 {
 	char	*new_result;
 
 	buffer[read_it] = '\0';
-	new_result = ft_strjoin(result, buffer);
-	if (result != NULL)
-		free(result);
+	new_result = ft_strjoin(*result, buffer);
+	if (*result != NULL)
+		free(*result);
 	return (new_result);
 }
 
@@ -94,7 +94,7 @@ char	*get_next_line(int fd)
 		read_it = read(fd, buffer, BUFFER_SIZE);
 		if (read_it == 0 || read_it == -1)
 			break ;
-		result = _append(result, buffer, read_it);
+		result = _append(&result, buffer, read_it);
 		if (ft_strchr(result, '\n') != NULL)
 			break ;
 	}
