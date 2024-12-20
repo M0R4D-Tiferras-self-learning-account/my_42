@@ -72,6 +72,8 @@ char	*_append(char **result, char *buffer, ssize_t read_it)
 
 	buffer[read_it] = '\0';
 	new_result = ft_strjoin(*result, buffer);
+	if (new_result == NULL)
+		return (free(new_result), free(*result), NULL);
 	if (*result != NULL)
 		free(*result);
 	return (new_result);
