@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 20:29:59 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/20 22:28:26 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,36 +111,36 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
- int	main(void)
- {
- 	int fd = open("test.txt", O_RDWR);
+//  int	main(void)
+//  {
+//  	int fd = open("test.txt", O_RDWR);
 
- 	char *s = get_next_line(fd);
- 	printf("--%s--", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s--", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s--", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s--", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s--", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s--", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s--", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s--", s);
- 	free(s);
+//  	char *s = get_next_line(fd);
+//  	printf("--%s--", s);
+//  	free(s);
+// 	s = get_next_line(fd);
+// 	printf("--%s--", s);
+//  	free(s);
+// 	s = get_next_line(fd);
+// 	printf("--%s--", s);
+//  	free(s);
+// 	s = get_next_line(fd);
+// 	printf("--%s--", s);
+//  	free(s);
+// 	s = get_next_line(fd);
+// 	printf("--%s--", s);
+//  	free(s);
+// 	s = get_next_line(fd);
+// 	printf("--%s--", s);
+//  	free(s);
+// 	s = get_next_line(fd);
+// 	printf("--%s--", s);
+//  	free(s);
+// 	s = get_next_line(fd);
+// 	printf("--%s--", s);
+//  	free(s);
 
-	printf("\n-----\n");
-	close(fd);
- 	return (0);
- }
+// 	printf("\n-----\n");
+// 	close(fd);
+//  	return (0);
+//  }
