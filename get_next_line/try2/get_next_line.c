@@ -20,22 +20,24 @@ static char	*update_result(char *result)
 	idx = 0;
 	while (result != NULL && result[idx] != '\0' && result[idx] != '\n')
 		idx++;
-	if (result[idx] == '\n')
-		tmp_result = ft_strdup(&result[idx + 1]);
 	if (result[idx] == '\0')
 	{
 		free(result);
 		return (NULL);
 	}
+	if (result[idx] == '\n')
+		tmp_result = ft_strdup(&result[idx + 1]);
 	if ((result[idx] == '\n') && (size_t)(idx + 1) <= ft_strlen(result))
 		tmp_result = ft_strdup(&result[idx + 1]);
 	else
 		tmp_result = ft_strdup(&result[idx]);
-	if (tmp_result[0] == '\0')
+	/*if (tmp_result[0] == '\0')
 	{
+		free(result);
+		result = NULL;
 		free(tmp_result);
 		return(NULL);
-	}
+	}*/
 	return (tmp_result);
 }
 
@@ -112,6 +114,12 @@ char	*get_next_line(int fd)
 		result = NULL;
 		return (NULL);
 	}
+	if (line[0] == '\0')
+    {
+        free(result);
+		result = NULL;
+        return (NULL);
+    }
 	result = update_result(result);
 	return (line);
 }
