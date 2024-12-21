@@ -18,7 +18,8 @@ static char	*update_result(char **result)
 	char	*tmp_result;
 
 	idx = 0;
-	while ((*result) != NULL && (*result)[idx] != '\0' && (*result)[idx] != '\n')
+	while ((*result) != NULL && (*result)[idx] != '\0'
+		&& (*result)[idx] != '\n')
 		idx++;
 	if ((*result)[idx] == '\0')
 	{
@@ -60,8 +61,8 @@ char	*_get_line(char *result)
 		line = ft_substr(result, 0, idx);
 	if (line[0] == '\0')
 	{
-		free(line);
-		return(NULL);
+		free (line);
+		return (NULL);
 	}
 	return (line);
 }
@@ -108,12 +109,12 @@ char	*get_next_line(int fd)
 	if ((line[0] == '\0' || line == NULL) && read_it == 0)
 		return (free(result), result = NULL, NULL);
 	if (line[0] == '\0')
-        return (free(result), result = NULL, NULL);
+		return (free(result), result = NULL, NULL);
 	result = update_result(&result);
 	return (line);
 }
 
- int	main(void)
+/*int	main(void)
  {
  	int fd = open("test.txt", O_RDWR);
 
@@ -145,4 +146,4 @@ char	*get_next_line(int fd)
 	printf("\n-----\n");
 	close(fd);
  	return (0);
- }
+ }*/
