@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/20 22:28:26 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/21 10:03:56 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static char	*update_result(char **result)
 	char	*tmp_result;
 
 	idx = 0;
-	while ((*result) != NULL && (*result)[idx] != '\0' && (*result)[idx] != '\n')
+	while ((*result) != NULL && (*result)[idx] != '\0'
+		&& (*result)[idx] != '\n')
 		idx++;
 	if ((*result)[idx] == '\0')
 	{
@@ -60,8 +61,8 @@ char	*_get_line(char *result)
 		line = ft_substr(result, 0, idx);
 	if (line[0] == '\0')
 	{
-		free(line);
-		return(NULL);
+		free (line);
+		return (NULL);
 	}
 	return (line);
 }
@@ -86,7 +87,7 @@ char	*get_next_line(int fd)
 	static char		*result = NULL;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX || read(fd, NULL, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || read(fd, NULL, 0) < 0)
 		return (NULL);
 	buffer = malloc(((size_t)(BUFFER_SIZE) + 1) * sizeof(char));
 	if (buffer == NULL)
@@ -108,11 +109,14 @@ char	*get_next_line(int fd)
 	if ((line[0] == '\0' || line == NULL) && read_it == 0)
 		return (free(result), result = NULL, NULL);
 	if (line[0] == '\0')
-        return (free(result), result = NULL, NULL);
+		return (free(result), result = NULL, NULL);
 	result = update_result(&result);
 	return (line);
 }
 
+/*int	main(void)
+ {
+ 	int fd = open("test.txt", O_RDWR);
 //  int	main(void)
 //  {
 //  	int fd = open("test.txt", O_RDWR);
@@ -142,7 +146,7 @@ char	*get_next_line(int fd)
 // 	printf("--%s--", s);
 //  	free(s);
 
-// 	printf("\n-----\n");
-// 	close(fd);
-//  	return (0);
-//  }
+	printf("\n-----\n");
+	close(fd);
+ 	return (0);
+ }*/
