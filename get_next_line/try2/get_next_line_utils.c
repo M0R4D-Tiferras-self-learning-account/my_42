@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:20:25 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 20:20:03 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/21 10:11:49 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_strdup(const char *s1)
 	char	*result;
 	int		idx;
 
+	if (s1 == NULL)
+		return (NULL);
 	result = malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (result == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/21 10:03:56 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/21 10:23:10 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,19 @@ static char	*update_result(char **result)
 	if ((*result)[idx] == '\0')
 	{
 		free((*result));
+		(*result) = NULL;
 		return (NULL);
 	}
 	if (((*result)[idx] == '\n') && (size_t)(idx + 1) <= ft_strlen((*result)))
 		tmp_result = ft_strdup(&(*result)[idx + 1]);
 	else
 		tmp_result = ft_strdup(&(*result)[idx]);
-	if (tmp_result == NULL)
-	{
-		free(*(result));
-		*(result) = NULL;
-		return (NULL);
-	}
 	free(*(result));
+	*(result) = NULL;
+	if (tmp_result == NULL)
+		return (NULL);
 	*(result) = tmp_result;
-	return (tmp_result);
+	return ((*result));
 }
 
 char	*_get_line(char *result)
@@ -74,7 +72,7 @@ char	*_append(char **result, char *buffer, ssize_t read_it)
 	buffer[read_it] = '\0';
 	new_result = ft_strjoin(*result, buffer);
 	if (new_result == NULL)
-		return (free(new_result), free(*result), NULL);
+		return (free(new_result), free(*result), (*result) = NULL, NULL);
 	if (*result != NULL)
 		free(*result);
 	return (new_result);
@@ -87,7 +85,7 @@ char	*get_next_line(int fd)
 	static char		*result = NULL;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX || read(fd, NULL, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)// || read(fd, NULL, 0) < 0
 		return (NULL);
 	buffer = malloc(((size_t)(BUFFER_SIZE) + 1) * sizeof(char));
 	if (buffer == NULL)
@@ -108,17 +106,20 @@ char	*get_next_line(int fd)
 	line = _get_line(result);
 	if ((line[0] == '\0' || line == NULL) && read_it == 0)
 		return (free(result), result = NULL, NULL);
-	if (line[0] == '\0')
-		return (free(result), result = NULL, NULL);
+	// if (line[0] == '\0')
+	// 	return (free(result), result = NULL, NULL);
 	result = update_result(&result);
 	return (line);
 }
 
-/*int	main(void)
- {
- 	int fd = open("test.txt", O_RDWR);
+// void leak()
+// {
+// 	system("leaks a.out");
+// }
+
 //  int	main(void)
 //  {
+// 	atexit(leak);
 //  	int fd = open("test.txt", O_RDWR);
 
 //  	char *s = get_next_line(fd);
@@ -146,7 +147,7 @@ char	*get_next_line(int fd)
 // 	printf("--%s--", s);
 //  	free(s);
 
-	printf("\n-----\n");
-	close(fd);
- 	return (0);
- }*/
+// 	printf("\n-----\n");
+// 	close(fd);
+//  	return (0);
+//  }
