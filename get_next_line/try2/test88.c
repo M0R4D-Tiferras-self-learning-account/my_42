@@ -6,16 +6,20 @@
 
 int main()
 {
-    int fd = open("test.txt", O_RDWR);
-    int byte;
-    char *b;
-    b = malloc(3 * sizeof(char));
-    while (1)
-    {
-        byte = read(fd, b, 2);
-        printf("\nreadit = %d\n buff = %s\n", byte, b);
-        if (byte == 0 || byte == -1)
-            break;
-    }
+    // int fd = open("test.txt", O_RDWR);
+    // int byte;
+    // char *b;
+    // b = malloc(3 * sizeof(char));
+    // while (1)
+    // {
+    //     byte = read(fd, b, 2);
+    //     printf("\nreadit = %d\n buff = %s\n", byte, b);
+    //     if (byte == 0 || byte == -1)
+    //         break;
+    // }
+    char *s;
+    s = malloc((-88 + 1));
+    if (!s)
+        printf("s == NULL\n");
     return 0;
 }

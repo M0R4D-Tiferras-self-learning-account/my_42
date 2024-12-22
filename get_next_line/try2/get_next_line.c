@@ -51,7 +51,7 @@ char	*_get_line(char *result)
 		idx++;
 	if (idx == 0 && result[idx] == '\n')
 		return (ft_strdup("\n"));
-	if (idx == 0)
+	if (idx == 0 && result[idx] == '\0')
 		return (result);
 	if (result[idx] == '\n' && (size_t)(idx + 1) <= ft_strlen(result))
 		line = ft_substr(result, 0, idx + 1);
@@ -78,26 +78,31 @@ char	*_append(char **result, char *buffer, ssize_t read_it)
 	return (new_result);
 }
 
+static char	*_malloc(int buff_size, char **buffer)
+{
+	*buffer = malloc(((size_t)(buff_size) + 1) * sizeof(char));
+	if (!*buffer)
+		return (NULL);
+	return (*buffer);
+}
+
 char	*get_next_line(int fd)
 {
 	int				read_it;
 	char			*buffer;
-	static char		*result = NULL;
+	static char		*result;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)// || read(fd, NULL, 0) < 0
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = malloc(((size_t)(BUFFER_SIZE) + 1) * sizeof(char));
-	if (buffer == NULL)
-		return (NULL);
-	while (1 > 0)
+	buffer = _malloc(BUFFER_SIZE, &buffer);
+	read_it = read(fd, buffer, BUFFER_SIZE);
+	while (read_it > 0)
 	{
-		read_it = read(fd, buffer, BUFFER_SIZE);
-		if (read_it == 0 || read_it == -1)
-			break ;
 		result = _append(&result, buffer, read_it);
 		if (ft_strchr(result, '\n') != NULL)
 			break ;
+		read_it = read(fd, buffer, BUFFER_SIZE);
 	}
 	free(buffer);
 	buffer = NULL;
@@ -106,48 +111,40 @@ char	*get_next_line(int fd)
 	line = _get_line(result);
 	if ((line[0] == '\0' || line == NULL) && read_it == 0)
 		return (free(result), result = NULL, NULL);
-	// if (line[0] == '\0')
-	// 	return (free(result), result = NULL, NULL);
 	result = update_result(&result);
 	return (line);
 }
 
-// void leak()
-// {
-// 	system("leaks a.out");
-// }
+//   int	main(void)
+//   {
+//   	int fd = open("test.txt", O_RDWR);
 
-//  int	main(void)
-//  {
-// 	atexit(leak);
-//  	int fd = open("test.txt", O_RDWR);
+//   	char *s = get_next_line(fd);
+//   	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("%s", s);
+//   	free(s);
 
-//  	char *s = get_next_line(fd);
-//  	printf("--%s--", s);
-//  	free(s);
-// 	s = get_next_line(fd);
-// 	printf("--%s--", s);
-//  	free(s);
-// 	s = get_next_line(fd);
-// 	printf("--%s--", s);
-//  	free(s);
-// 	s = get_next_line(fd);
-// 	printf("--%s--", s);
-//  	free(s);
-// 	s = get_next_line(fd);
-// 	printf("--%s--", s);
-//  	free(s);
-// 	s = get_next_line(fd);
-// 	printf("--%s--", s);
-//  	free(s);
-// 	s = get_next_line(fd);
-// 	printf("--%s--", s);
-//  	free(s);
-// 	s = get_next_line(fd);
-// 	printf("--%s--", s);
-//  	free(s);
-
-// 	printf("\n-----\n");
-// 	close(fd);
-//  	return (0);
-//  }
+//  	printf("\n-----\n");
+//  	close(fd);
+//   	return (0);
+//   }
