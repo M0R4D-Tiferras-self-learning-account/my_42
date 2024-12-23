@@ -6,16 +6,42 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/18 20:29:59 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/22 23:49:09 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+static char	*update_result(char **result)
+{
+	size_t	idx;
+	char	*tmp_result;
+
+	idx = 0;
+	while ((*result) != NULL && (*result)[idx] != '\0'
+		&& (*result)[idx] != '\n')
+		idx++;
+	if ((*result)[idx] == '\0')
+	{
+		free((*result));
+		(*result) = NULL;
+		return (NULL);
+	}
+	if (((*result)[idx] == '\n') && (size_t)(idx + 1) <= ft_strlen((*result)))
+		tmp_result = ft_strdup(&(*result)[idx + 1]);
+	else
+		tmp_result = ft_strdup(&(*result)[idx]);
+	free(*(result));
+	*(result) = NULL;
+	if (tmp_result == NULL)
+		return (NULL);
+	*(result) = tmp_result;
+	return ((*result));
+}
+
 char	*_get_line(char *result)
 {
 	int		idx;
-	char	*tmp_result;
 	char	*line;
 
 	idx = 0;
@@ -23,61 +49,60 @@ char	*_get_line(char *result)
 		return (NULL);
 	while (result != NULL && result[idx] != '\0' && result[idx] != '\n')
 		idx++;
-	if (idx == 0)
+	if (idx == 0 && result[idx] == '\n')
+		return (ft_strdup("\n"));
+	if (idx == 0 && result[idx] == '\0')
 		return (result);
 	if (result[idx] == '\n' && (size_t)(idx + 1) <= ft_strlen(result))
-	{
 		line = ft_substr(result, 0, idx + 1);
-		tmp_result = ft_strdup(&result[idx + 1]);
-	}
 	else
-	{
 		line = ft_substr(result, 0, idx);
-		tmp_result = ft_strdup(&result[idx]);
-	}
-	free(result);
 	if (line[0] == '\0')
 	{
-		free(line);
-		free(tmp_result);
-		return(NULL);
+		free (line);
+		return (NULL);
 	}
-	result = ft_strdup(tmp_result);
-	free(tmp_result);
 	return (line);
 }
 
-char	*_append(char *result, char *buffer, ssize_t read_it)
+char	*_append(char **result, char *buffer, ssize_t read_it)
 {
 	char	*new_result;
 
 	buffer[read_it] = '\0';
-	new_result = ft_strjoin(result, buffer);
-	if (result != NULL)
-		free(result);
+	new_result = ft_strjoin(*result, buffer);
+	if (new_result == NULL)
+		return (free(new_result), free(*result), (*result) = NULL, NULL);
+	if (*result != NULL)
+		free(*result);
 	return (new_result);
+}
+
+static char	*_malloc(int buff_size, char **buffer)
+{
+	*buffer = malloc(((size_t)(buff_size) + 1) * sizeof(char));
+	if (!*buffer)
+		return (NULL);
+	return (*buffer);
 }
 
 char	*get_next_line(int fd)
 {
 	int				read_it;
 	char			*buffer;
-	static char		*result = NULL;
+	static char		*result;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX || read(fd, NULL, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buffer = malloc(((size_t)(BUFFER_SIZE) + 1) * sizeof(char));
-	if (buffer == NULL)
-		return (NULL);
-	while (1 > 0)
+	buffer = _malloc(BUFFER_SIZE, &buffer);
+	read_it = read(fd, buffer, BUFFER_SIZE);
+	while (read_it > 0)
 	{
-		read_it = read(fd, buffer, BUFFER_SIZE);
-		if (read_it == 0 || read_it == -1)
-			break ;
-		result = _append(result, buffer, read_it);
+		result = _append(&result, buffer, read_it);
 		if (ft_strchr(result, '\n') != NULL)
 			break ;
+		read_it = read(fd, buffer, BUFFER_SIZE);
 	}
 	free(buffer);
 	buffer = NULL;
@@ -85,35 +110,41 @@ char	*get_next_line(int fd)
 		return (free(result), result = NULL, NULL);
 	line = _get_line(result);
 	if ((line[0] == '\0' || line == NULL) && read_it == 0)
-	{
-		free(result);
-		result = NULL;
-		return (NULL);
-	}
+		return (free(result), result = NULL, NULL);
+	result = update_result(&result);
 	return (line);
 }
 
+//   int	main(void)
+//   {
+//   	int fd = open("test.txt", O_RDWR);
 
- int	main(void)
- {
- 	int fd = open("test.txt", O_RDWR);
+//   	char *s = get_next_line(fd);
+//   	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("Line = %s", s);
+//   	free(s);
+//  	s = get_next_line(fd);
+//  	printf("%s", s);
+//   	free(s);
 
- 	char *s = get_next_line(fd);
- 	printf("--%s", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("--%s", s);
- 	free(s);
-	s = get_next_line(fd);
-	printf("-->%s", s);
- 	free(s);
-
-	close(fd);
- 	return (0);
- }
+//  	printf("\n-----\n");
+//  	close(fd);
+//   	return (0);
+//   }
