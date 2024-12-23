@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 16:23:26 by moutifer          #+#    #+#             */
-/*   Updated: 2024/12/21 10:23:10 by moutifer         ###   ########.fr       */
+/*   Updated: 2024/12/23 11:34:16 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static char	*update_result(char **result)
 	char	*tmp_result;
 
 	idx = 0;
+	tmp_result = NULL;
 	while ((*result) != NULL && (*result)[idx] != '\0'
 		&& (*result)[idx] != '\n')
 		idx++;
@@ -27,10 +28,8 @@ static char	*update_result(char **result)
 		(*result) = NULL;
 		return (NULL);
 	}
-	if (((*result)[idx] == '\n') && (size_t)(idx + 1) <= ft_strlen((*result)))
+	if (((*result)[idx] == '\n') && ((size_t)(idx + 1) <= ft_strlen((*result))))
 		tmp_result = ft_strdup(&(*result)[idx + 1]);
-	else
-		tmp_result = ft_strdup(&(*result)[idx]);
 	free(*(result));
 	*(result) = NULL;
 	if (tmp_result == NULL)
@@ -114,37 +113,3 @@ char	*get_next_line(int fd)
 	result = update_result(&result);
 	return (line);
 }
-
-  int	main(void)
-  {
-  	int fd = open("test.txt", O_RDWR);
-
-  	char *s = get_next_line(fd);
-  	printf("Line = %s", s);
-  	free(s);
- 	s = get_next_line(fd);
- 	printf("Line = %s", s);
-  	free(s);
- 	s = get_next_line(fd);
- 	printf("Line = %s", s);
-  	free(s);
- 	s = get_next_line(fd);
- 	printf("Line = %s", s);
-  	free(s);
- 	s = get_next_line(fd);
- 	printf("Line = %s", s);
-  	free(s);
- 	s = get_next_line(fd);
- 	printf("Line = %s", s);
-  	free(s);
- 	s = get_next_line(fd);
- 	printf("Line = %s", s);
-  	free(s);
- 	s = get_next_line(fd);
- 	printf("%s", s);
-  	free(s);
-
- 	printf("\n-----\n");
- 	close(fd);
-  	return (0);
-  }
