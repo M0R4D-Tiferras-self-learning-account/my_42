@@ -81,7 +81,7 @@ char	*_append(char **result, char *buffer, ssize_t read_it)
 static char	*_malloc(int buff_size, char **buffer)
 {
 	*buffer = malloc(((size_t)(buff_size) + 1) * sizeof(char));
-	if (!*buffer)
+	if (*buffer == NULL)
 		return (NULL);
 	return (*buffer);
 }
@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 	static char		*result;
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	buffer = _malloc(BUFFER_SIZE, &buffer);
 	read_it = read(fd, buffer, BUFFER_SIZE);
@@ -115,36 +115,36 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-//   int	main(void)
-//   {
-//   	int fd = open("test.txt", O_RDWR);
+  int	main(void)
+  {
+  	int fd = open("test.txt", O_RDWR);
 
-//   	char *s = get_next_line(fd);
-//   	printf("Line = %s", s);
-//   	free(s);
-//  	s = get_next_line(fd);
-//  	printf("Line = %s", s);
-//   	free(s);
-//  	s = get_next_line(fd);
-//  	printf("Line = %s", s);
-//   	free(s);
-//  	s = get_next_line(fd);
-//  	printf("Line = %s", s);
-//   	free(s);
-//  	s = get_next_line(fd);
-//  	printf("Line = %s", s);
-//   	free(s);
-//  	s = get_next_line(fd);
-//  	printf("Line = %s", s);
-//   	free(s);
-//  	s = get_next_line(fd);
-//  	printf("Line = %s", s);
-//   	free(s);
-//  	s = get_next_line(fd);
-//  	printf("%s", s);
-//   	free(s);
+  	char *s = get_next_line(fd);
+  	printf("Line = %s", s);
+  	free(s);
+ 	s = get_next_line(fd);
+ 	printf("Line = %s", s);
+  	free(s);
+ 	s = get_next_line(fd);
+ 	printf("Line = %s", s);
+  	free(s);
+ 	s = get_next_line(fd);
+ 	printf("Line = %s", s);
+  	free(s);
+ 	s = get_next_line(fd);
+ 	printf("Line = %s", s);
+  	free(s);
+ 	s = get_next_line(fd);
+ 	printf("Line = %s", s);
+  	free(s);
+ 	s = get_next_line(fd);
+ 	printf("Line = %s", s);
+  	free(s);
+ 	s = get_next_line(fd);
+ 	printf("%s", s);
+  	free(s);
 
-//  	printf("\n-----\n");
-//  	close(fd);
-//   	return (0);
-//   }
+ 	printf("\n-----\n");
+ 	close(fd);
+  	return (0);
+  }
