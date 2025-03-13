@@ -6,13 +6,13 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:23:06 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/13 11:58:46 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:01:22 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini.h"
 
-static void _putchar(char c)
+static void	_putchar(char c)
 {
 	write(1, &c, 1);
 }
@@ -31,7 +31,7 @@ static void	_reset(int *binary)
 
 void	handler(int signum)
 {
-    static int	bin[8];
+	static int	bin[8];
 	static int	idx = 0;
 	char		c;
 
