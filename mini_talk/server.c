@@ -6,24 +6,46 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:23:06 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/12 14:34:51 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:58:46 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini.h"
 
-int	g_count;
+static void _putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+static void	_reset(int *binary)
+{
+	int	idx;
+
+	idx = 0;
+	while (idx < 8)
+	{
+		*(binary + idx) = 0;
+		idx++;
+	}
+}
 
 void	handler(int signum)
 {
+    static int	bin[8];
+	static int	idx = 0;
+	char		c;
+
 	if (signum == SIGUSR1)
-	{
-		g_count++;
-	}
+		bin[idx] = 1;
 	else if (signum == SIGUSR2)
+		bin[idx] = 0;
+	idx++;
+	if (idx == 8)
 	{
-		printf("%c", g_count);
-		g_count = 0;
+		c = bin_to_decimal(bin);
+		_putchar(c);
+		_reset(bin);
+		idx = 0;
 	}
 }
 
@@ -39,12 +61,12 @@ int	main(int argc, char **argv)
 	pid = getpid();
 	printf("====================\n The Server PID = %d\n", pid);
 	ft_putstr("\n====================\n");
+	signal(SIGUSR1, handler);
+	signal(SIGUSR2, handler);
 	ft_putstr("Waiting for messages ...\n");
 	while (1)
 	{
-		signal(SIGUSR1, handler);
-		signal(SIGUSR2, handler);
-		//pause();
+		pause();
 	}
 	return (0);
 }

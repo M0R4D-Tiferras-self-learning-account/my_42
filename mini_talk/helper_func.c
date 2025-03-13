@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:44:06 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/12 14:00:01 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:44:11 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,39 @@ int	ft_atoi(const char *str)
 		idx++;
 	}
 	return (result * sign);
+}
+
+static int	_power(int num, int pow)
+{
+	int	it;
+	int	result;
+
+	it = 1;
+	result = 1;
+	if (pow == 0)
+		return (1);
+	while (it <= pow)
+	{
+		result = result * num;
+		it++;
+	}
+	return (result);
+}
+
+int	bin_to_decimal(int *bin)
+{
+	int	idx;
+	int	result;
+	int	pow;
+
+	idx = 7;
+	pow = 0;
+	while (idx >= 0)
+	{
+		if (*(bin + idx) != 0)
+			result = result + _power(2, pow);
+		idx--;
+		pow++;
+	}
+	return (result);
 }
