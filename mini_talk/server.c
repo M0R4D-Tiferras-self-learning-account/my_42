@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:23:06 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/13 12:01:22 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/15 12:28:12 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	_reset(int *binary)
 	idx = 0;
 	while (idx < 8)
 	{
-		*(binary + idx) = 0;
+		binary[idx] = 0;
 		idx++;
 	}
 }
@@ -43,7 +43,15 @@ void	handler(int signum)
 	if (idx == 8)
 	{
 		c = bin_to_decimal(bin);
-		_putchar(c);
+		if (c == '\0')
+		{
+			_putchar('\n');
+			_reset(bin);
+			idx = 0;
+			return ;
+		}
+		else
+			_putchar(c);
 		_reset(bin);
 		idx = 0;
 	}

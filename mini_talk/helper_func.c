@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:44:06 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/13 11:44:11 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:32:26 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,10 @@ int	bin_to_decimal(int *bin)
 
 	idx = 7;
 	pow = 0;
+	result = 0;
 	while (idx >= 0)
 	{
-		if (*(bin + idx) != 0)
+		if (*(bin + idx) == 1)
 			result = result + _power(2, pow);
 		idx--;
 		pow++;
