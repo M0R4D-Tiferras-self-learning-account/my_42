@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:02:55 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/15 12:33:41 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/15 14:18:33 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	sender(char c, int pid)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(300);
+		usleep(500);
+		usleep(500);
 		idx++;
 	}
 }
