@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:02:55 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/15 14:18:33 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/24 12:55:17 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	sender(char c, int pid)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
-		usleep(500);
-		usleep(500);
+		usleep(200);
+		usleep(200);
 		idx++;
 	}
 }
@@ -56,7 +56,6 @@ int	main(int argc, char **argv)
 {
 	int	pid;
 	int	idx;
-	int	ascii_value;
 
 	if (argc != 3)
 	{
@@ -64,8 +63,9 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	pid = ft_atoi(argv[1]);
+	if (pid <= 1 || pid > 99998)
+		exit(1);
 	idx = 0;
-	ascii_value = 1;
 	while (argv[2][idx] != '\0')
 	{
 		sender(argv[2][idx], pid);

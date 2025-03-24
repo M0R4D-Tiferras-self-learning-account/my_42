@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 12:44:06 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/15 11:32:26 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/22 09:09:11 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	check_over(size_t res, int s)
 	if ((res >= 9223372036854775807) && s == 1)
 		return (-1);
 	if ((res == 9223372036854775807) && s == -1)
-		return (1);
+		return (-1);
 	if ((res > 9223372036854775807))
-		return (0);
+		return (-1);
 	return (8);
 }
 

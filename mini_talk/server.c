@@ -6,18 +6,18 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:23:06 by moutifer          #+#    #+#             */
-/*   Updated: 2025/03/15 12:28:12 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:29:35 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini.h"
 
-static void	_putchar(char c)
+static void	put_char(char c)
 {
 	write(1, &c, 1);
 }
 
-static void	_reset(int *binary)
+void	_reset(int *binary, int *n)
 {
 	int	idx;
 
@@ -27,14 +27,30 @@ static void	_reset(int *binary)
 		binary[idx] = 0;
 		idx++;
 	}
+	*n = 0;
 }
 
-void	handler(int signum)
+static void	norm(int *pid, int sender_pid, int *idx, int *binnary)
+{
+	if (pid == 0)
+		*pid = sender_pid;
+	if (*pid != sender_pid)
+	{
+		_reset(binnary, idx);
+		*pid = sender_pid;
+		ft_putstr("\n\n\n\n");
+	}
+}
+
+void	handler(int signum, siginfo_t *sender_info, void *ucontext)
 {
 	static int	bin[8];
 	static int	idx = 0;
 	char		c;
+	static int	client_pid;
 
+	(void) (ucontext);
+	norm(&client_pid, sender_info->si_pid, &idx, bin);
 	if (signum == SIGUSR1)
 		bin[idx] = 1;
 	else if (signum == SIGUSR2)
@@ -45,32 +61,34 @@ void	handler(int signum)
 		c = bin_to_decimal(bin);
 		if (c == '\0')
 		{
-			_putchar('\n');
-			_reset(bin);
-			idx = 0;
+			put_char('\n');
+			_reset(bin, &idx);
 			return ;
 		}
 		else
-			_putchar(c);
-		_reset(bin);
-		idx = 0;
+			put_char(c);
+		_reset(bin, &idx);
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	int	pid;
+	int					pid;
+	struct sigaction	sa;
 
+	(void) (argv);
 	if (argc != 1)
 	{
-		ft_putstr("Wrong Execution Format\n No argument needed for the server\n");
+		ft_putstr("No argument needed for ./server\n");
 		exit(1);
 	}
 	pid = getpid();
-	printf("====================\n The Server PID = %d\n", pid);
+	ft_printf("====================\n The Server PID = %d\n", pid);
 	ft_putstr("\n====================\n");
-	signal(SIGUSR1, handler);
-	signal(SIGUSR2, handler);
+	sa.sa_sigaction = handler;
+	sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	ft_putstr("Waiting for messages ...\n");
 	while (1)
 	{
