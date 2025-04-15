@@ -1,12 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   rra_rrb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/12 17:58:25 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/12 17:58:26 by moutifer         ###   ########.fr       */
+/*   Created: 2025/04/13 20:37:53 by moutifer          #+#    #+#             */
+/*   Updated: 2025/04/15 04:40:03 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+/* rrr: rra and rrb at the same time */
+void	rrr(t_stack *stack_a, t_stack *stack_b, int print)
+{
+	rra(stack_a, 0);
+	rrb(stack_b, 0);
+	if (print)
+		ft_putstr_fd("rrr\n", 1);
+}
