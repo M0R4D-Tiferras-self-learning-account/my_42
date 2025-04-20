@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:58:25 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/15 04:46:09 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/16 09:24:50 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int		parse_string_args(char *str, t_stack *stack_a);
 /* Sorting algorithms */
 void	sort_three(t_stack *stack_a, t_stack *stack_b);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);
-void	sort_small(t_stack *stack_a, t_stack *stack_b);
 void	sort_large(t_stack *stack_a, t_stack *stack_b);
 
 /* Chunk sorting helpers */
@@ -63,5 +62,10 @@ void	get_min_max(t_stack *stack, int *min, int *max);
 int		get_best_move(t_stack *stack, int target);
 int		find_position(t_stack *stack, int num, int *pos);
 void	push_back_to_a(t_stack *stack_a, t_stack *stack_b);
+void	create_sorted_array(t_stack *stack, int *sorted);
+int		find_closest_element(t_stack *stack, int *sorted, int chunk_start, int chunk_end);
+void	move_element_to_top(t_stack *stack, int value, void (*rotate)(t_stack *, int),
+                         void (*rev_rotate)(t_stack *, int));
+int		find_best_element_to_push(t_stack *stack_b);
 
 #endif

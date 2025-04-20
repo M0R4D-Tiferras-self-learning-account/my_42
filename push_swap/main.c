@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:58:35 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/15 04:46:46 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/16 09:25:12 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	
 	stack_size = calculate_stack_size(argc, argv);
 	if (stack_size == 0)
 		return (0);
