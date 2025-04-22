@@ -6,7 +6,7 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:41:46 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/22 22:02:58 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:10:29 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, int chunk_size)
 				break ;
 			move_element_to_top(stack_a, target, &ra, &rra);
 			pb(stack_a, stack_b, 1);
-			// Mark the element as processed by finding its index in sorted array
 			for (int i = chunk_start; i < chunk_end; i++)
 			{
 				if (sorted[i] == target)
@@ -211,7 +210,6 @@ void	push_back_to_a(t_stack *stack_a, t_stack *stack_b)
 		target = find_best_element_to_push(stack_b);
 		move_element_to_top(stack_b, target, &rb, &rrb);
 		pa(stack_a, stack_b, 1);
-		// Keep stack A in proper order
 		if (stack_a->size > 1
 			&& stack_a->array[0] > stack_a->array[stack_a->size - 1]
 			&& stack_a->array[0] > stack_a->array[1])
