@@ -6,13 +6,12 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:34:47 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/15 04:38:14 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:04:37 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* ra: rotate stack a (first element becomes last) */
 void	ra(t_stack *stack_a, int print)
 {
 	int	temp;
@@ -32,7 +31,6 @@ void	ra(t_stack *stack_a, int print)
 		ft_putstr_fd("ra\n", 1);
 }
 
-/* rb: rotate stack b (first element becomes last) */
 void	rb(t_stack *stack_b, int print)
 {
 	int	temp;
@@ -52,7 +50,6 @@ void	rb(t_stack *stack_b, int print)
 		ft_putstr_fd("rb\n", 1);
 }
 
-/* rr: ra and rb at the same time */
 void	rr(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	ra(stack_a, 0);
@@ -61,7 +58,6 @@ void	rr(t_stack *stack_a, t_stack *stack_b, int print)
 		ft_putstr_fd("rr\n", 1);
 }
 
-/* rra: reverse rotate a (last element becomes first) */
 void	rra(t_stack *stack_a, int print)
 {
 	int	temp;
@@ -81,7 +77,6 @@ void	rra(t_stack *stack_a, int print)
 		ft_putstr_fd("rra\n", 1);
 }
 
-/* rrb: reverse rotate b (last element becomes first) */
 void	rrb(t_stack *stack_b, int print)
 {
 	int	temp;

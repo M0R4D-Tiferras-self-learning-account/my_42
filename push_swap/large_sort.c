@@ -6,13 +6,12 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:41:46 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/16 09:26:08 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:02:58 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Create a sorted copy of the stack for indexing */
 void	create_sorted_array(t_stack *stack, int *sorted)
 {
 	int	i;
@@ -43,8 +42,8 @@ void	create_sorted_array(t_stack *stack, int *sorted)
 	}
 }
 
-/* Find the closest element from the current chunk */
-int	find_closest_element(t_stack *stack, int *sorted, int chunk_start, int chunk_end)
+int	find_closest_element(t_stack *stack, int *sorted, int chunk_start,
+		int chunk_end)
 {
 	int	i;
 	int	j;
@@ -67,14 +66,13 @@ int	find_closest_element(t_stack *stack, int *sorted, int chunk_start, int chunk
 					current_dist = i;
 				else
 					current_dist = stack->size - i;
-				
 				if (current_dist < min_dist)
 				{
 					min_dist = current_dist;
 					closest_value = sorted[j];
 					position = i;
 				}
-				break;
+				break ;
 			}
 			i++;
 		}
@@ -83,9 +81,8 @@ int	find_closest_element(t_stack *stack, int *sorted, int chunk_start, int chunk
 	return (closest_value);
 }
 
-/* Move stack elements to match a specific value */
-void	move_element_to_top(t_stack *stack, int value, void (*rotate)(t_stack *, int),
-                         void (*rev_rotate)(t_stack *, int))
+void	move_element_to_top(t_stack *stack, int value, void (*rotate)(t_stack *,
+			int), void (*rev_rotate)(t_stack *, int))
 {
 	int	i;
 	int	position;
@@ -97,14 +94,12 @@ void	move_element_to_top(t_stack *stack, int value, void (*rotate)(t_stack *, in
 		if (stack->array[i] == value)
 		{
 			position = i;
-			break;
+			break ;
 		}
 		i++;
 	}
-	
 	if (position == -1)
-		return;
-		
+		return ;
 	if (position <= stack->size / 2)
 	{
 		while (position > 0)
@@ -123,7 +118,6 @@ void	move_element_to_top(t_stack *stack, int value, void (*rotate)(t_stack *, in
 	}
 }
 
-/* Push elements to stack B in chunks using optimized selection */
 void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, int chunk_size)
 {
 	int	*sorted;
@@ -136,13 +130,10 @@ void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, int chunk_size)
 
 	sorted = malloc(sizeof(int) * stack_a->size);
 	if (!sorted)
-		return;
-		
+		return ;
 	original_size = stack_a->size;
 	create_sorted_array(stack_a, sorted);
-	
 	total_chunks = (original_size + chunk_size - 1) / chunk_size;
-	
 	chunk = 0;
 	while (chunk < total_chunks && stack_a->size > 0)
 	{
@@ -150,16 +141,14 @@ void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, int chunk_size)
 		chunk_end = (chunk + 1) * chunk_size;
 		if (chunk_end > original_size)
 			chunk_end = original_size;
-		
 		while (stack_a->size > 0 && chunk_start < chunk_end)
 		{
-			target = find_closest_element(stack_a, sorted, chunk_start, chunk_end);
+			target = find_closest_element(stack_a, sorted, chunk_start,
+					chunk_end);
 			if (target == -1)
-				break;
-				
+				break ;
 			move_element_to_top(stack_a, target, &ra, &rra);
 			pb(stack_a, stack_b, 1);
-			
 			// Mark the element as processed by finding its index in sorted array
 			for (int i = chunk_start; i < chunk_end; i++)
 			{
@@ -167,7 +156,7 @@ void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, int chunk_size)
 				{
 					sorted[i] = INT_MIN;
 					chunk_start++;
-					break;
+					break ;
 				}
 			}
 		}
@@ -176,7 +165,6 @@ void	push_chunks_to_b(t_stack *stack_a, t_stack *stack_b, int chunk_size)
 	free(sorted);
 }
 
-/* Find best element to push back from B to A */
 int	find_best_element_to_push(t_stack *stack_b)
 {
 	int	i;
@@ -190,7 +178,6 @@ int	find_best_element_to_push(t_stack *stack_b)
 	get_min_max(stack_b, &min, &max);
 	best_cost = stack_b->size;
 	best_value = max;
-	
 	i = 0;
 	while (i < stack_b->size)
 	{
@@ -199,7 +186,6 @@ int	find_best_element_to_push(t_stack *stack_b)
 			current_cost = stack_b->size - position;
 		else
 			current_cost = position;
-			
 		if (current_cost < best_cost)
 		{
 			best_cost = current_cost;
@@ -211,49 +197,43 @@ int	find_best_element_to_push(t_stack *stack_b)
 		}
 		i++;
 	}
-	
 	return (best_value);
 }
 
-/* Push elements back from B to A in optimized order */
 void	push_back_to_a(t_stack *stack_a, t_stack *stack_b)
 {
 	int	target;
-	
+		int min;
+		int max;
+
 	while (stack_b->size > 0)
 	{
 		target = find_best_element_to_push(stack_b);
 		move_element_to_top(stack_b, target, &rb, &rrb);
 		pa(stack_a, stack_b, 1);
-		
 		// Keep stack A in proper order
-		if (stack_a->size > 1 && stack_a->array[0] > stack_a->array[stack_a->size - 1] 
+		if (stack_a->size > 1
+			&& stack_a->array[0] > stack_a->array[stack_a->size - 1]
 			&& stack_a->array[0] > stack_a->array[1])
 		{
 			ra(stack_a, 1);
 		}
 	}
-	
-	// Final adjustment to ensure stack A is sorted
 	if (!is_sorted(stack_a))
 	{
-		int	min;
-		int	max;
 		get_min_max(stack_a, &min, &max);
 		move_element_to_top(stack_a, min, &ra, &rra);
 	}
 }
 
-/* Sort large stack using optimized chunk method */
 void	sort_large(t_stack *stack_a, t_stack *stack_b)
 {
 	int	chunk_size;
 
 	if (stack_a->size <= 100)
-		chunk_size = 15;  // Optimized for 100 numbers
+		chunk_size = 15;
 	else
-		chunk_size = 30;  // Optimized for 500 numbers
-	
+		chunk_size = 30;
 	push_chunks_to_b(stack_a, stack_b, chunk_size);
 	push_back_to_a(stack_a, stack_b);
 }

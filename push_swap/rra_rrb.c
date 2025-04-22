@@ -6,13 +6,12 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:37:53 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/15 04:40:03 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:06:33 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* rrr: rra and rrb at the same time */
 void	rrr(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	rra(stack_a, 0);

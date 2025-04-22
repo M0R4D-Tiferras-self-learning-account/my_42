@@ -6,13 +6,12 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:53:34 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/16 09:25:38 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:07:32 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Get best move to bring a value to the top of the stack */
 int	get_best_move(t_stack *stack, int target)
 {
 	int	i;
@@ -25,21 +24,18 @@ int	get_best_move(t_stack *stack, int target)
 		if (stack->array[i] == target)
 		{
 			position = i;
-			break;
+			break ;
 		}
 		i++;
 	}
-	
 	if (position == -1)
 		return (0);
-		
 	if (position <= stack->size / 2)
 		return (position);
 	else
 		return (position - stack->size);
 }
 
-/* Find position where num should be inserted in sorted stack */
 int	find_position(t_stack *stack, int num, int *pos)
 {
 	int	i;
@@ -48,26 +44,21 @@ int	find_position(t_stack *stack, int num, int *pos)
 	int	min_pos;
 
 	get_min_max(stack, &min, &max);
-	
-	// If number is outside the min-max range
 	if (num < min || num > max)
 	{
-		// Find position of min value
 		i = 0;
 		while (i < stack->size)
 		{
 			if (stack->array[i] == min)
 			{
 				min_pos = i;
-				break;
+				break ;
 			}
 			i++;
 		}
 		*pos = min_pos;
 		return (1);
 	}
-	
-	// Find position where num should be inserted
 	i = 0;
 	while (i < stack->size - 1)
 	{
@@ -78,8 +69,6 @@ int	find_position(t_stack *stack, int num, int *pos)
 		}
 		i++;
 	}
-	
-	// Handle edge case
 	i = 0;
 	while (i < stack->size - 1)
 	{
@@ -93,7 +82,6 @@ int	find_position(t_stack *stack, int num, int *pos)
 		}
 		i++;
 	}
-	
 	return (0);
 }
 
@@ -119,7 +107,8 @@ int	ft_atoi(const char *str, int *error)
 		if (str[i] < '0' || str[i] > '9')
 			*error = 1;
 		result = result * 10 + (str[i] - '0');
-		if ((sign == 1 && result > INT_MAX) || (sign == -1 && (-result < INT_MIN)))
+		if ((sign == 1 && result > INT_MAX) || (sign == -1
+				&& (-result < INT_MIN)))
 			*error = 1;
 		i++;
 	}

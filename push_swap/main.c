@@ -89,15 +89,11 @@ int	main(int argc, char **argv)
 	stack_size = calculate_stack_size(argc, argv);
 	if (stack_size == 0)
 		return (0);
-		
 	if (!init_stacks(&stack_a, &stack_b, stack_size))
 		return (handle_error(&stack_a, &stack_b));
-	
 	if (!process_input(argc, argv, &stack_a, &stack_b))
 		return (handle_error(&stack_a, &stack_b));
-	
 	choose_sort_algorithm(&stack_a, &stack_b);
-	
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);

@@ -6,13 +6,12 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 21:00:31 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/15 04:45:54 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:05:49 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Split a string into a new array using space as delimiter */
 char	**ft_split(char const *s)
 {
 	int		count;
@@ -51,7 +50,6 @@ char	**ft_split(char const *s)
 	return (result);
 }
 
-/* Duplicate a string */
 char	*ft_strdup(const char *s)
 {
 	char	*dup;
@@ -74,7 +72,6 @@ char	*ft_strdup(const char *s)
 	return (dup);
 }
 
-/* Free the array of strings */
 void	free_split(char **split)
 {
 	int	i;
@@ -88,7 +85,6 @@ void	free_split(char **split)
 	free(split);
 }
 
-/* Process string arguments */
 int	parse_string_args(char *str, t_stack *stack_a)
 {
 	char	**args;
@@ -121,10 +117,8 @@ int	parse_args(int argc, char **argv, t_stack *stack_a)
 	int	error;
 
 	stack_a->size = 0;
-	/* If only one argument is provided, it might be a string of numbers */
 	if (argc == 2)
 	{
-		/* Check if the argument contains a space */
 		i = 0;
 		while (argv[1][i])
 		{
@@ -133,8 +127,6 @@ int	parse_args(int argc, char **argv, t_stack *stack_a)
 			i++;
 		}
 	}
-	
-	/* Otherwise, process each argument separately */
 	i = 1;
 	while (i < argc)
 	{

@@ -6,13 +6,12 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 20:33:57 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/15 04:37:46 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:05:06 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* sa: swap the first 2 elements of stack a */
 void	sa(t_stack *stack_a, int print)
 {
 	int	temp;
@@ -26,7 +25,6 @@ void	sa(t_stack *stack_a, int print)
 		ft_putstr_fd("sa\n", 1);
 }
 
-/* sb: swap the first 2 elements of stack b */
 void	sb(t_stack *stack_b, int print)
 {
 	int	temp;
@@ -40,7 +38,6 @@ void	sb(t_stack *stack_b, int print)
 		ft_putstr_fd("sb\n", 1);
 }
 
-/* ss: sa and sb at the same time */
 void	ss(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	sa(stack_a, 0);
@@ -49,7 +46,6 @@ void	ss(t_stack *stack_a, t_stack *stack_b, int print)
 		ft_putstr_fd("ss\n", 1);
 }
 
-/* pa: push top element from b to a */
 void	pa(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int	i;
@@ -75,7 +71,6 @@ void	pa(t_stack *stack_a, t_stack *stack_b, int print)
 		ft_putstr_fd("pa\n", 1);
 }
 
-/* pb: push top element from a to b */
 void	pb(t_stack *stack_a, t_stack *stack_b, int print)
 {
 	int	i;

@@ -6,13 +6,12 @@
 /*   By: moutifer <moutifer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 17:58:32 by moutifer          #+#    #+#             */
-/*   Updated: 2025/04/15 04:39:11 by moutifer         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:06:54 by moutifer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Optimal sorting for exactly 3 numbers */
 void	sort_three(t_stack *stack_a, t_stack *stack_b)
 {
 	int	a;
@@ -43,7 +42,6 @@ void	sort_three(t_stack *stack_a, t_stack *stack_b)
 	}
 }
 
-/* Find smallest value in stack */
 int	find_smallest(t_stack *stack)
 {
 	int	i;
@@ -65,7 +63,6 @@ int	find_smallest(t_stack *stack)
 	return (smallest_idx);
 }
 
-/* Moves the smallest value to the top of stack_a */
 void	move_smallest_to_top(t_stack *stack_a)
 {
 	int	smallest_idx;
@@ -85,7 +82,6 @@ void	move_smallest_to_top(t_stack *stack_a)
 	}
 }
 
-/* Sort exactly 5 numbers */
 void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
