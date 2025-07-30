@@ -3,5 +3,5 @@
 
 ## About this directory:
 
-==> I will try harder and self-learn in some 42 school projects in my interests
+==> I will try harder and self-learn some 42 school projects in my interests
 
