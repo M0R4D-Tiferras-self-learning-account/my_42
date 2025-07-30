@@ -1,3 +1,2 @@
-# Self-learning some 42 projects after my Blackhole at 22 Avr 2025
-
+# Self-learning some 42 projects after missing a milestone deadline at 22 Avr 2025
 
